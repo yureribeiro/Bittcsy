@@ -1,6 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Home } from '../pages/home'
-import { Wallet } from '../pages/wallet'
+import { Details } from '../pages/details'
+
 const Stack = createNativeStackNavigator()
 
 export function StackRoutes() {
@@ -11,13 +12,6 @@ export function StackRoutes() {
         component={Home}
         options={{
           headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name='Wallet'
-        component={Wallet}
-        options={{
-          title: 'Detalhes do Criptoativo',
         }}
       />
     </Stack.Navigator>

@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
+import { useNavigation } from '@react-navigation/native'
 import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native'
-import axios from 'axios'
 import { Coin } from '../../components/coins'
+import axios from 'axios'
 
 export function Home() {
+  const navigation = useNavigation()
   const [coins, setCoins] = useState([])
   const [search, setSearch] = useState('')
 
   useEffect(() => {
     async function getCoins() {
-      await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false')
+      await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=70&page=1&sparkline=false')
         .then(res => {
-          console.log(res.data)
           setCoins(res.data)
         })
         .catch(error => console.log(error))
@@ -19,10 +20,12 @@ export function Home() {
     getCoins()
   }, [])
 
-  const handleSearch = text => {
-    setSearch(text)
-    const filteredCoins = coins.filter(coin => coin.name.toLowerCase().includes(text.toLowerCase()))
-    setCoins(filteredCoins)
+  const handleChange = (text) => {
+    setSearch(text);
+  }
+
+  const handleCoinPress = (coin) => {
+    navigation.navigate('Details', { coin })
   }
 
   return (
@@ -32,7 +35,7 @@ export function Home() {
           style={styles.input}
           placeholder='Procure por uma cripto...'
           placeholderTextColor="#EEEEEE"
-          onChangeText={handleSearch}
+          onChangeText={handleChange}
           value={search}
         />
       </View>
@@ -41,9 +44,11 @@ export function Home() {
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={coins}
+        data={coins.filter((coin) => coin.name.toLowerCase().includes(search.toLowerCase()))}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => <Coin data={item} />}
+        renderItem={({ item }) => (
+          <Coin data={item} onPress={handleCoinPress} />
+        )}
       />
     </SafeAreaView>
   )

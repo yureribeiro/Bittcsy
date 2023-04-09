@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native"
 
-export function Coin({ data }) {
+export function Coin({ data, onPress }) {
 
   return (
-    <TouchableOpacity activeOpacity={0.9} style={styles.container}>
+    <TouchableOpacity activeOpacity={0.9} style={styles.container} onPress={() => onPress(data)}>
       <View style={styles.criptoContent}>
         <View style={styles.cripto}>
           <View style={styles.imageView}>

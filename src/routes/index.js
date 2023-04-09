@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs' //Tabba
 import { StackRoutes } from './stackRoutes'
 import { Ionicons } from '@expo/vector-icons' //icones
 import { View, StyleSheet } from 'react-native'
+import { Details } from '../pages/details'
 
 
 const Tab = createBottomTabNavigator()
@@ -14,6 +15,7 @@ export function Routes() {
           headerShown: false, //não mostra o header nativo
           tabBarHideOnKeyboard: true, //para o TabBar não subir quando o teclado aparecer
           tabBarShowLabel: false, //oculta o texto da TabBar
+
           tabBarStyle: {
             height: 65,
             backgroundColor: '#222831',
@@ -25,7 +27,7 @@ export function Routes() {
         }}
       >
         <Tab.Screen
-          name='Home'
+          name='HomeTab'
           component={StackRoutes}
           options={{
             //estilos dos icones em caso de foco e desfoco
@@ -38,8 +40,8 @@ export function Routes() {
           }}
         />
         <Tab.Screen
-          name='Wallet'
-          component={StackRoutes}
+          name='Details'
+          component={Details}
           options={{
             //estilos dos icones em caso de foco e desfoco
             tabBarIcon: ({ color, size, focused }) => {
