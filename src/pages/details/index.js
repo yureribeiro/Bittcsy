@@ -1,21 +1,21 @@
 import { useRoute } from '@react-navigation/native'
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native'
-import { LineChart } from 'react-native-chart-kit';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 
 export function Details() {
   const route = useRoute();
   const { coin } = route.params;
 
-  let data = [1, 2, 3, 4, 5];
-
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.coin}>
-        <Text style={styles.name}>{coin.name} ({coin.symbol})</Text>
         <Image
           style={styles.image}
           source={{ uri: coin.image }}
         />
+        <View>
+          <Text style={styles.name}>{coin.name}</Text>
+          <Text style={styles.name}>({coin.symbol.toUpperCase()})</Text>
+        </View>
       </View>
 
       <View style={styles.list}>
@@ -30,18 +30,26 @@ export function Details() {
         </Text>
       </View>
       <View style={styles.list}>
-        <Text style={styles.text}>Market cap: {coin.market_cap.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Text>
+        <Text style={styles.text}>
+          Market cap: {coin.market_cap.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </Text>
       </View>
       <View style={styles.list}>
-        <Text style={styles.text}>Volume: {coin.total_volume.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Text>
+        <Text style={styles.text}>
+          Volume: {coin.total_volume.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </Text>
       </View>
       <View style={styles.list}>
-        <Text style={styles.text}>Hight 24H: {coin.high_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Text>
+        <Text style={styles.text}>
+          Hight 24H: {coin.high_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </Text>
       </View>
       <View style={styles.list}>
-        <Text style={styles.text}>Low 24H: {coin.low_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</Text>
+        <Text style={styles.text}>
+          Low 24H: {coin.low_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+        </Text>
       </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
@@ -49,18 +57,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#03051E',
-    marginTop: 20,
-    alignItems: 'center',
-    paddingTop: 30
+    paddingLeft: '10%',
+    paddingTop: 10
   },
   coin: {
+    flexDirection: 'row',
     alignItems: 'center',
     padding: 14,
     marginBottom: 14
   },
   name: {
     fontSize: 20,
-    color: '#fff',
+    color: '#FFD369',
     fontWeight: 'bold',
     marginBottom: 14
   },
@@ -74,7 +82,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   list: {
-    width: '100%',
+    width: '90%',
     padding: 10,
     backgroundColor: '#222831',
     borderRadius: 8,
@@ -83,7 +91,7 @@ const styles = StyleSheet.create({
     marginBottom: 14
   },
   price: {
-    width: '100%',
+    width: '90%',
     padding: 10,
     backgroundColor: '#222831',
     borderRadius: 8,

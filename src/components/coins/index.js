@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   symbol: {
     paddingLeft: 10,
-    color: '#6B728E',
+    color: '#FFD369',
     fontWeight: 'bold'
   },
   porcentView: {

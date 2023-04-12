@@ -56,11 +56,11 @@ export function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, //garante que cubra toda a tela!
+    flex: 1,
     backgroundColor: '#03051E',
-    paddingTop: 36,
+    paddingTop: '10%',
     paddingStart: 14,
-    paddingEnd: 14
+    paddingEnd: 14,
   },
   text: {
     color: '#fff',
