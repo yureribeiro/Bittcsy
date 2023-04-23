@@ -64,14 +64,14 @@ export function Discussion() {
     const response = await axios.post('https://api-bitcsy.vercel.app/discussions', newDiscussion)
     setDiscussions([...discussions, response.data])
     setModalDiscussionVisible(false)
-    setNewDiscussion({ title: '', content: '', authorId: 1 })
+    setNewDiscussion({ title: '', content: '', authorId: userId })
   }
 
   //post de novo comentário em alguma discussão
   const postComment = async () => {
     const response = await axios.post('https://api-bitcsy.vercel.app/comments', newComment)
     setDiscussions([...discussions.comments, response.data])
-    setNewComment({ content: '', authorId: 1 })
+    setNewComment({ content: '', authorId: userId })
   }
 
   return (
