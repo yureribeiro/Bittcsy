@@ -29,7 +29,7 @@ export function Login() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Registre seu nome de usuário para contribuir nas discussões</Text>
+      <Text style={styles.text}>Faça Login para contribuir nas discussões da comunidade</Text>
       <TextInput
         style={styles.input}
         placeholder="Name"
