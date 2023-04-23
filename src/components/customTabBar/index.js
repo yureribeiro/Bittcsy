@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native"
+import { View, StyleSheet, TouchableOpacity, Platform } from "react-native"
 import { MaterialIcons } from '@expo/vector-icons'
 
 export default function CustomTabBar({ state, descriptors, navigation }) {
@@ -32,6 +32,7 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
 
           return (
             <TouchableOpacity
+              key={route.key}
               accessibilityRole="button"
               accessibilityState={isFocused ? { selected: true } : {}}
               accessibilityLabel={options.tabBarAccessibilityLabel}

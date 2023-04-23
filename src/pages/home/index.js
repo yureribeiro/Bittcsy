@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TextInput, FlatList } from 'react-native'
 import { Coin } from '../../components/coins'
 import axios from 'axios'
 
@@ -41,6 +41,7 @@ export function Home() {
       </View>
       <View style={styles.filter}>
         <Text style={styles.text}>Stats Coins</Text>
+        <Text style={{ color: '#fff', paddingTop: 10 }}>Selecione para mais detalhes</Text>
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -63,12 +64,14 @@ const styles = StyleSheet.create({
     paddingEnd: 14,
   },
   text: {
-    color: '#fff',
+    color: '#FFD369',
+    fontWeight: 'bold',
     fontSize: 18,
     fontWeight: 'bold'
   },
   filter: {
-    marginBottom: 14
+    marginBottom: 14,
+    paddingTop: 10
   },
   input: {
     width: '100%',

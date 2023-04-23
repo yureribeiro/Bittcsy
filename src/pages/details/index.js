@@ -1,12 +1,12 @@
+import { View, Text, StyleSheet, Image } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 
 export function Details() {
-  const route = useRoute();
-  const { coin } = route.params;
+  const route = useRoute()
+  const { coin } = route.params
 
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
+    <View contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.coin}>
         <Image
           style={styles.image}
@@ -49,7 +49,7 @@ export function Details() {
           Low 24H: {coin.low_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
         </Text>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#FFD369',
     fontWeight: 'bold',
-    marginBottom: 14
+    paddingLeft: 20
   },
   image: {
     height: 100,
@@ -112,3 +112,6 @@ const styles = StyleSheet.create({
     color: 'red'
   }
 })
+
+
+

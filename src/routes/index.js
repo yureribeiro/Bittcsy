@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs' //Tabbar-bottom
 import { StackRoutes } from './stackRoutes'
-import { Stars } from '../pages/stars'
 import { World } from '../pages/world'
+import { Discussion } from '../pages/discussion'
 import CustomTabBar from '../components/customTabBar'
 
 const Tab = createBottomTabNavigator()
@@ -18,13 +18,6 @@ export function Routes() {
     >
 
       <Tab.Screen
-        name='WorldTab'
-        component={World}
-        options={{
-          tabBarIcon: 'public'
-        }}
-      />
-      <Tab.Screen
         name='HomeTab'
         component={StackRoutes}
         options={{
@@ -32,10 +25,17 @@ export function Routes() {
         }}
       />
       <Tab.Screen
-        name='StarsTab'
-        component={Stars}
+        name='WorldTab'
+        component={World}
         options={{
-          tabBarIcon: 'star-rate'
+          tabBarIcon: 'public'
+        }}
+      />
+      <Tab.Screen
+        name='DiscussionTab'
+        component={Discussion}
+        options={{
+          tabBarIcon: 'emoji-objects'
         }}
       />
     </Tab.Navigator>

@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   trend: {
-    width: '70%',
-    marginLeft: '15%',
+    width: '80%',
+    marginLeft: '10%',
   },
   trendCoin: {
     gap: 20,

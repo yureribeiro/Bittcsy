@@ -1,24 +1,26 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
 import newImage from '../../../assets/news-image.jpg'
 import worldImage from '../../../assets/world-image.jpg'
-
+import discussion from '../../../assets/discussion.jpg'
 import { useNavigation } from "@react-navigation/native"
 import { LinearGradient } from 'expo-linear-gradient'
 
 export function World() {
   const navigation = useNavigation()
 
-  function handleNavigate() {
-    navigation.navigate('Popular')
+  function handleNavigate(screen) {
+    navigation.navigate({ name: screen })
   }
 
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Fique por dentro</Text>
       <Text style={styles.title}>do mundo cripto!</Text>
 
       <View style={styles.cards}>
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={handleNavigate}>
+
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('HomeTab')}>
           <Image source={newImage} style={styles.images} />
           <Text style={styles.text}>Últimas notícias</Text>
           <LinearGradient
@@ -27,7 +29,16 @@ export function World() {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={handleNavigate}>
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
+          <Image source={discussion} style={styles.images} />
+          <Text style={styles.text}>Forum de Discussões</Text>
+          <LinearGradient
+            style={styles.gradient}
+            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Popular')}>
           <Image source={worldImage} style={styles.images} />
           <Text style={styles.text}>Criptos populares</Text>
           <LinearGradient
@@ -36,7 +47,7 @@ export function World() {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
@@ -44,12 +55,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#03051E',
-    paddingTop: '10%',
+    paddingTop: '15%',
     paddingLeft: '10%'
   },
   cards: {
     marginTop: 14,
-    gap: 20
+    gap: 20,
+    paddingBottom: '50%'
   },
   title: {
     color: '#FFD369',
@@ -69,7 +81,7 @@ const styles = StyleSheet.create({
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.6)',
     borderRadius: 14,
-    height: 150,
+    height: 170,
     width: '90%'
   },
   images: {
