@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, TextInput } from 'react-native'
 import NewDiscussion from '../../components/newDisc'
 import { useNavigation } from "@react-navigation/native"
@@ -48,8 +48,6 @@ export function Discussion() {
     navigation.navigate('Login');
   }
 
-
-
   //modal nova discussão
   const handleNewDiscussion = () => {
     setModalDiscussionVisible(true)
@@ -71,7 +69,7 @@ export function Discussion() {
   const postComment = async () => {
     const response = await axios.post('https://api-bitcsy.vercel.app/comments', newComment)
     setDiscussions([...discussions.comments, response.data])
-    setNewComment({ content: '', authorId: userId })
+    setNewComment({ content: '', authorId: userId, discussionId: 1 })
   }
 
   return (
