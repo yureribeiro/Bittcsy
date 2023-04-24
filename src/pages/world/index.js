@@ -12,7 +12,6 @@ export function World() {
     navigation.navigate({ name: screen })
   }
 
-
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>Fique por dentro</Text>
@@ -20,7 +19,7 @@ export function World() {
 
       <View style={styles.cards}>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('HomeTab')}>
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('NewsTab')}>
           <Image source={newImage} style={styles.images} />
           <Text style={styles.text}>Últimas notícias</Text>
           <LinearGradient

@@ -70,6 +70,7 @@ export function Discussion() {
     const response = await axios.post('https://api-bitcsy.vercel.app/comments', newComment)
     setDiscussions([...discussions.comments, response.data])
     setNewComment({ content: '', authorId: userId, discussionId: 1 })
+    console.log(userId)
   }
 
   return (
