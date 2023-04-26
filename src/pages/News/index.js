@@ -7,6 +7,8 @@ import axios from 'axios'
 export function News() {
   const [news, setNews] = useState([])
   const [showLink, setShowLink] = useState(false)
+  const [translatedNews, setTranslatedNews] = useState([])
+  const [selectedNewsUrl, setSelectedNewsUrl] = useState(null)
 
   useEffect(() => {
     async function getNews() {
@@ -15,6 +17,23 @@ export function News() {
     }
     getNews()
   }, [])
+
+  async function translateText(text) {
+    try {
+      const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
+        method: 'POST'
+      })
+      const json = await response.json()
+      return json.data.translations[0].translatedText
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async function handleTranslate(item) {
+    const translatedTitle = await translateText(item.title);
+    setTranslatedNews([...translatedNews, { ...item, title: translatedTitle }]);
+  }
 
   const date = () => {
     const now = new Date(Date.now())
@@ -29,36 +48,32 @@ export function News() {
     )
   }
 
-  function handlePress() {
-    setShowLink(true)
-  }
-
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>
         Últimas Notícias
       </Text>
-      {news.map((item) => {
-        return (
-          <>
-            <View key={item.id} style={styles.cardNews}>
-              <Text style={styles.titleCard}>{item.title}</Text>
-              <View style={styles.detailsCard}>
-                <Text style={styles.textDetailsCard}>{date()}</Text>
-                <TouchableOpacity style={styles.linkCard} onPress={handlePress}>
-                  <Text style={styles.fonteCard}>{item.domain}</Text>
-                  <MaterialIcons name='near-me' size={16} color={'#FFD369'} />
-                </TouchableOpacity>
-              </View>
-            </View>
 
-            <Modal visible={showLink} animationType='slide'>
-              <DetailsNews
-                handleClose={() => setShowLink(false)}
-                linkUrl={item.url}
-              />
-            </Modal>
-          </>
+      {news.map((item) => {
+        const translatedItem = translatedNews.find((i) => i.id === item.id)
+        return (
+          <View key={item.id} style={styles.cardNews}>
+            <Text style={styles.titleCard}>{translatedItem ? translatedItem.title : item.title}</Text>
+
+            <View style={styles.detailsCard}>
+              <Text style={styles.textDetailsCard}>{date()}</Text>
+              <TouchableOpacity onPress={() => handleTranslate(item)}>
+                <Text style={styles.translateText}>Traduzir</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.linkCard} onPress={() => {
+                setSelectedNewsUrl(item.url);
+                setShowLink(true);
+              }}>
+                <Text style={styles.fonteCard}>{item.domain}</Text>
+                <MaterialIcons name='near-me' size={16} color={'#FFD369'} />
+              </TouchableOpacity>
+            </View>
+          </View>
         )
       })}
 
@@ -70,6 +85,13 @@ export function News() {
           caso as notícias não aparecerem, aguarde um momento e atualize a página.
         </Text>
       </View>
+
+      <Modal visible={showLink} animationType='slide'>
+        <DetailsNews
+          handleClose={() => setShowLink(false)}
+          linkUrl={selectedNewsUrl}
+        />
+      </Modal>
     </ScrollView >
   )
 }
@@ -91,6 +113,8 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   cardNews: {
+    backgroundColor: 'rgba(57, 62, 70, 0.56)',
+    gap: 8,
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.6)',
     borderRadius: 14,
@@ -115,6 +139,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 5,
     alignItems: 'center'
+  },
+  translateText: {
+    color: '#FFD369'
   },
   fonteCard: {
     color: '#576CBC'
