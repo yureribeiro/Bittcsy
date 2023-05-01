@@ -40,7 +40,7 @@ export function Home() {
         />
       </View>
       <View style={styles.filter}>
-        <Text style={styles.text}>Stats Coins</Text>
+        <Text style={styles.text}>Acompanhe o Mercado</Text>
         <Text style={{ color: '#fff', paddingTop: 10 }}>Selecione para mais detalhes</Text>
       </View>
       <FlatList

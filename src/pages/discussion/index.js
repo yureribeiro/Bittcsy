@@ -1,157 +1,84 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Modal, TextInput } from 'react-native'
-import NewDiscussion from '../../components/newDisc'
-import { useNavigation } from "@react-navigation/native"
+import React, { useState, useEffect, useCallback, useContext } from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, TextInput, ScrollView, RefreshControl, ActivityIndicator } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons'
+import { api } from '../../utils/api'
 import { AuthContext } from '../../utils'
-import axios from 'axios'
 
 export function Discussion() {
-  const navigation = useNavigation()
   const { userId } = useContext(AuthContext)
-  const [loading, setLoading] = useState(true)
-  const [discussions, setDiscussions] = useState([])
-  const [modalDiscussionVisible, setModalDiscussionVisible] = useState(false) //para criar nova discussão
-  const [showComments, setShowComments] = useState(false)
-
-  const [newDiscussion, setNewDiscussion] = useState({
-    title: '',
-    content: '',
-    authorId: userId,
-  })
-
-  const [newComment, setNewComment] = useState({
-    content: '',
-    authorId: userId,
-    discussionId: 1
-  })
+  const [messages, setMessages] = useState([])
+  const [newMessage, setNewMessage] = useState('')
+  const [refreshing, setRefreshing] = useState(false)
 
   useEffect(() => {
-    //recuperar discussões e comentários
-    async function getDiscussions() {
+    async function getMessages() {
       try {
-        const response = await axios.get('https://api-bitcsy.vercel.app/discussions')
-        setDiscussions(response.data)
-        setLoading(false)
+        const response = await api.get('/messages')
+        setMessages(response.data)
       } catch (error) {
-        console.error(error)
-        setLoading(false)
+        console.log('erro na requisição ' + error)
       }
     }
-    getDiscussions()
+    getMessages()
+  }, [refreshing])
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    console.log('atualizei a tela...')
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 2000)
   }, [])
 
-  const handleRegister = () => {
-    navigation.navigate('Register');
-  }
-
-  const handleLogin = () => {
-    navigation.navigate('Login');
-  }
-
-  //modal nova discussão
-  const handleNewDiscussion = () => {
-    setModalDiscussionVisible(true)
-  }
-
-  const handleViewComments = () => {
-    setShowComments(!showComments)
-  }
-
-  //post de nova discussão
-  const handleSubmitDiscussion = async () => {
-    const response = await axios.post('https://api-bitcsy.vercel.app/discussions', newDiscussion)
-    setDiscussions([...discussions, response.data])
-    setModalDiscussionVisible(false)
-    setNewDiscussion({ title: '', content: '', authorId: userId })
-  }
-
-  //post de novo comentário em alguma discussão
-  const postComment = async () => {
-    const response = await axios.post('https://api-bitcsy.vercel.app/comments', newComment)
-    setDiscussions([...discussions.comments, response.data])
-    setNewComment({ content: '', authorId: userId, discussionId: 1 })
-    console.log(userId)
+  const handleSendMessage = async () => {
+    const authorId = userId
+    try {
+      const { data } = await api.post(`/messages/${authorId}`, { content: newMessage })
+      setMessages([...messages, data])
+      console.log(`author Id: ${authorId}`)
+      setNewMessage('')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <View style={styles.container}>
-      <View style={{ margin: 20 }}>
-        <Text style={styles.text}>Para iniciar uma discussão e adicionar comentários faça login na Bitcsy</Text>
-      </View>
-
-      <View style={styles.containerLogin}>
-        <TouchableOpacity style={styles.buttonLogin} onPress={handleRegister}>
-          <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 16 }}>Registrar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonLogin} onPress={handleLogin}>
-          <Text style={{ color: '#000', fontWeight: 'bold', fontSize: 16 }}>Entrar</Text>
-        </TouchableOpacity>
-      </View>
-
-      <Text style={styles.titlePage}>Discussões publicadas </Text>
-
-      < TouchableOpacity onPress={handleNewDiscussion} style={styles.button}>
-        <Text style={styles.text}>Criar nova discussão</Text>
-      </TouchableOpacity >
-
-      {loading ? ( // Renderiza um indicador de carregamento enquanto loading for true
-        <Text style={styles.loading}>Carregando discussões...</Text>
-      ) : (<FlatList
-        style={styles.list}
-        data={discussions}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.discussionCard}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.text}>{item.content}</Text>
-            <View style={styles.authorDiv}>
-              <Text style={styles.credito}>Iniciou a discussão:</Text>
-              <Text style={styles.author}>{item.author.name}</Text>
-            </View>
-            <TouchableOpacity onPress={() => handleViewComments(item.id)} style={styles.buttomComments}>
-              <Text style={styles.textButtom}>Visualizar comentários</Text>
-            </TouchableOpacity>
-
-
-            <View style={showComments ? styles.commentsSection : [styles.commentsSection, styles.hidden]}>
-              <FlatList
-                style={styles.commentsList}
-                data={item.comments}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                  <>
-                    <Text style={styles.author}>{item.author.name}</Text>
-                    <Text style={styles.text}>{item.content}</Text>
-                  </>
-                )}
-              />
-              <View style={styles.containerCommentInput}>
-                <TextInput
-                  style={styles.inputComment}
-                  placeholder="Faça um comentário"
-                  placeholderTextColor="#EEEEEE"
-                  value={newComment.content}
-                  onChangeText={(text) => setNewComment({ ...newComment, content: text })}
-                />
-                <TouchableOpacity onPress={postComment} style={styles.submitButtonText}>
-                  <Text style={styles.submitButtonText}>Públicar</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+      <ScrollView style={styles.chat}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
+        {refreshing ? <ActivityIndicator style={styles.activityIndicator} size='large' color='#fff' /> :
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, paddingBottom: 14 }}>
+            <MaterialIcons name='south' size={17} color='#fff' />
+            <Text style={styles.description}>
+              arraste para atualizar!
+            </Text>
           </View>
-        )
         }
-      />)}
-
-      < Modal Modal visible={modalDiscussionVisible} animationType="slide" transparent >
-        <NewDiscussion
-          newDiscussion={newDiscussion}
-          setNewDiscussion={setNewDiscussion}
-          handleSubmitDiscussion={handleSubmitDiscussion}
-          setModalDiscussionVisible={setModalDiscussionVisible}
+        {messages.map((message) => (
+          <View
+            key={message.id}
+            style={styles.cardMessage}>
+            <Text style={styles.authorMessage}>{message.author ? message.author.name : 'Eu'}</Text>
+            <Text style={styles.contentMessage}>{message.content}</Text>
+          </View>
+        ))}
+      </ScrollView>
+      <View style={styles.input}>
+        <TextInput
+          style={styles.textInput}
+          value={newMessage}
+          onChangeText={setNewMessage}
         />
-      </Modal>
-    </View >
+        <TouchableOpacity
+          onPress={handleSendMessage}
+          style={styles.submitButton}
+        >
+          <Text style={styles.textButtom}>Enviar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   )
 }
 
@@ -159,132 +86,73 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#03051E',
-    paddingTop: '10%',
+    paddingTop: '18%',
+    padding: 10,
+    flexDirection: 'column',
+    gap: 14
   },
-  containerLogin: {
-    flexDirection: 'row',
-    marginBottom: 10,
-    paddingLeft: 15
-  },
-  buttonLogin: {
-    backgroundColor: '#9BA4B5',
-    color: '#000',
-    marginBottom: 16,
-    marginLeft: 15,
-    borderRadius: 8,
-    borderWidth: .5,
-    borderColor: 'rgba(204, 204, 204, 0.4)',
-    padding: 5
-  },
-  titlePage: {
-    fontSize: 25,
-    color: '#FFD369',
-    fontWeight: 'bold',
-    marginBottom: 14,
-    paddingLeft: 20
-  },
-  button: {
-    backgroundColor: '#393E46',
-    width: '43%',
-    marginBottom: 16,
-    marginLeft: 40,
-    borderRadius: 8,
-    borderWidth: .5,
-    borderColor: 'rgba(204, 204, 204, 0.6)',
-    padding: 10
-  },
-  loading: {
-    fontSize: 20,
+  description: {
+    fontSize: 15,
     color: '#fff',
-    fontWeight: 'bold',
-    marginLeft: '10%',
-    marginTop: '5%'
+    fontWeight: 'bold'
   },
-  list: {
-    width: '90%',
-    paddingLeft: '10%',
-    marginBottom: '13%'
+  chat: {
+    paddingBottom: '5%',
+    width: '100%',
+    height: '70%',
+    overflow: 'scroll',
+    borderRadius: 14
   },
-  discussionCard: {
-    fontSize: 18,
-    gap: 10,
-    color: '#FFD369',
-    fontWeight: 'bold',
-    borderRadius: 8,
+  cardMessage: {
+    color: '#fff',
+    backgroundColor: 'rgba(57, 62, 70, 0.46)',
+    gap: 8,
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.6)',
-    padding: 12,
+    borderRadius: 14,
+    padding: 10,
     marginBottom: 14
   },
-  title: {
-    fontSize: 20,
-    color: '#FFD369',
-    fontWeight: 'bold',
-  },
-  text: {
+  contentMessage: {
     color: '#fff',
-    fontSize: 16,
   },
-  credito: {
-    color: '#d3d3d3',
-    fontSize: 15,
-  },
-  author: {
-    fontSize: 16,
+  authorMessage: {
     color: '#FFD369',
-    fontWeight: 'bold',
-  },
-  authorDiv: {
-    flexDirection: 'row',
-    gap: 10,
-  },
-  buttomComments: {
-    width: '70%',
-    borderRadius: 8,
-    borderWidth: .5,
-    borderColor: 'rgba(204, 204, 204, 0.6)',
-    padding: 5,
-  },
-  textButtom: {
-    fontSize: 18,
-    color: '#9BA4B5',
     fontWeight: 'bold'
   },
 
-  // comentários
-  commentsSection: {
-
-  },
-  hidden: {
-    display: 'none'
-  },
-  commentsList: {
-    borderRadius: 8,
-    borderWidth: .8,
-    borderBottomColor: 'rgba(204, 204, 204, 0.4)',
-    paddingBottom: 8,
-    marginBottom: 14
-  },
-  containerCommentInput: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  // input messeges
+  input: {
     width: '100%',
-    padding: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#222831',
     borderRadius: 8,
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.4)',
-    marginBottom: 14
+    padding: 6,
+    marginBottom: '28%'
   },
-  inputComment: {
-    width: '75%',
-    color: '#fff'
+  textInput: {
+    width: '70%',
+    color: '#fff',
+    padding: 6
   },
-  submitButtonText: {
-    fontSize: 16,
-    color: '#576CBC',
+  submitButton: {
+    width: '20%',
+    alignItems: 'center',
+    padding: 6,
+    borderRadius: 8,
+    borderWidth: .5,
+    borderColor: 'rgba(204, 204, 204, 0.4)',
+  },
+  textButtom: {
+    color: '#FFD369',
     fontWeight: 'bold'
   },
 
+  activityIndicator: {
+    marginBottom: 14
+  }
 }) 

@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs' //Tabba
 import { StackRoutes } from './stackRoutes'
 import { World } from '../pages/world'
 import { Discussion } from '../pages/discussion'
+import { News } from '../pages/News'
 import CustomTabBar from '../components/customTabBar'
 
 const Tab = createBottomTabNavigator()
@@ -32,10 +33,10 @@ export function Routes() {
         }}
       />
       <Tab.Screen
-        name='DiscussionTab'
-        component={Discussion}
+        name='NewsTab'
+        component={News}
         options={{
-          tabBarIcon: 'emoji-objects'
+          tabBarIcon: 'library-books',
         }}
       />
     </Tab.Navigator>

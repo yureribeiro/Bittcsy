@@ -1,15 +1,14 @@
 {
   "expo": {
-    "name": "receitas",
-    "slug": "receitas",
+    "name": "Bittcsy",
+    "slug": "Bittcsy - Acompanhe o Mundo Cripto",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icons/cubocomfundo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/icons/screen.png",
+      "resizeMode": "cover"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,12 +18,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/icons/icon.png",
+        "backgroundColor": "#222831"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icons/icon.png"
     }
   }
 }

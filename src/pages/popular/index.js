@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, ActivityIndicator } from 'react-native'
 import axios from 'axios'
 
 export function Popular() {
@@ -22,7 +22,10 @@ export function Popular() {
       </View>
       <View style={styles.trend}>
         {trend.length === 0 ? (
-          <Text style={styles.loading}>Carregando...</Text>
+          <ActivityIndicator
+            fontSize={28}
+            color='#fff'
+          />
         ) : (
           trend.map((coin, index) => {
             return (

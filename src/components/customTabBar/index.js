@@ -45,7 +45,7 @@ export default function CustomTabBar({ state, descriptors, navigation }) {
                 <View style={{ backgroundColor: isFocused ? 'rgba(255, 211, 105, 0.20)' : 'transparent', borderRadius: 99, padding: 8 }}>
                   <MaterialIcons
                     name={options.tabBarIcon}
-                    size={34}
+                    size={33}
                     color={isFocused ? '#FFD369' : '#EEEEEE'}
                   />
                 </View>
@@ -65,20 +65,20 @@ const styles = StyleSheet.create({
   },
   content: {
     flexDirection: 'row',
-    marginBottom: Platform.OS === 'ios' ? 38 : 24,
+    marginBottom: Platform.OS === 'ios' ? 38 : 28,
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
     bottom: 0,
     backgroundColor: '#222831',
     borderRadius: 99,
-    gap: 20,
+    gap: 18,
     // sombra no android
-    elevation: 10,
+    elevation: 12,
     // sombra no IOS
     shadowColor: '#000',
     shadowOffSet: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.4,
     shadowRadius: 3.80
   },
   buttomTab: {

@@ -1,10 +1,10 @@
-import { SafeAreaView, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { Feather } from '@expo/vector-icons'
 import { WebView } from 'react-native-webview'
 
 export function DetailsNews({ linkUrl, handleClose }) {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <TouchableOpacity onPress={handleClose} style={styles.backButton}>
         <Feather name='arrow-left' size={30} color='#fff' />
         <Text style={styles.backText}>Voltar</Text>
@@ -13,7 +13,7 @@ export function DetailsNews({ linkUrl, handleClose }) {
         style={styles.contentView}
         source={{ uri: linkUrl }}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    paddingTop: '9%'
   },
   backButton: {
     flexDirection: 'row',

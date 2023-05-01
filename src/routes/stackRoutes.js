@@ -4,6 +4,7 @@ import { Details } from '../pages/details'
 import { Popular } from '../pages/popular'
 import { Register } from '../pages/Register'
 import { Login } from '../pages/Login'
+import { Discussion } from '../pages/discussion'
 import { News } from '../pages/News'
 
 const Stack = createNativeStackNavigator()
@@ -54,7 +55,14 @@ export function StackRoutes() {
         }}
       />
       <Stack.Screen
-        name='NewsTab'
+        name='DiscussionTab'
+        component={Discussion}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name='News'
         component={News}
         options={{
           headerShown: false,
