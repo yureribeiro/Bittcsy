@@ -1,11 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 
 export function Learn() {
-
-  function handleLearn() {
-    console.log('cliquei em aprendar mais')
-  }
-
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.titlePage}>É novo no mundo cripto? todos nós somos!</Text>
@@ -31,8 +26,8 @@ export function Learn() {
 
       <View style={styles.credits}>
         <Text style={styles.textCredits}>Aprenda mais sobre Bitcoin em:</Text>
-        <TouchableOpacity onPress={handleLearn}>
-          <Text style={styles.linkCredits}>bitcoin.org</Text>
+        <TouchableOpacity>
+          <a href='https://bitcoin.org/pt_BR/' style={styles.linkCredits}>bitcoin.org</a>
         </TouchableOpacity>
       </View>
 
