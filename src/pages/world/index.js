@@ -1,8 +1,11 @@
 import { useContext } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
-import newImage from '../../../assets/news-image.jpg'
+import newsImage from '../../../assets/news-image.jpg'
 import worldImage from '../../../assets/world-image.jpg'
 import discussion from '../../../assets/discussion.jpg'
+import Learn from '../../../assets/learn.jpg'
+
+
 import { useNavigation } from "@react-navigation/native"
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../utils'
@@ -26,20 +29,31 @@ export function World() {
 
       <View style={styles.cards}>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('NewsTab')}>
-          <Image source={newImage} style={styles.images} />
-          <Text style={styles.text}>Últimas notícias</Text>
-          <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
+
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
+          <Image source={discussion} style={styles.images} />
+          <Text style={styles.text}>Forum de Discussões</Text>
+          <Text style={styles.description}>Faça login e contribua com o chat único da comunidade</Text>
           <LinearGradient
             style={styles.gradient}
             colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
-          <Image source={discussion} style={styles.images} />
-          <Text style={styles.text}>Forum de Discussões</Text>
-          <Text style={styles.description}>Faça login e contribua com o chat único da comunidade</Text>
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Learn')}>
+          <Image source={Learn} style={styles.images} />
+          <Text style={styles.text}>Aprenda mais sobre Blockchain e Bitcoin</Text>
+          <Text style={styles.description}>Como essas tecnologias revolucionárias está mudando o mundo!</Text>
+          <LinearGradient
+            style={styles.gradient}
+            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('NewsTab')}>
+          <Image source={newsImage} style={styles.images} />
+          <Text style={styles.text}>Últimas notícias</Text>
+          <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
           <LinearGradient
             style={styles.gradient}
             colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
@@ -65,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#03051E',
     paddingTop: '15%',
-    paddingLeft: '10%'
+    paddingLeft: '5%'
   },
   cards: {
     marginTop: 14,
@@ -82,7 +96,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(204, 204, 204, 0.6)',
     borderRadius: 14,
     height: 195,
-    width: '90%'
+    width: '95%'
   },
   images: {
     width: '100%',

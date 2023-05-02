@@ -6,6 +6,7 @@ import { Register } from '../pages/Register'
 import { Login } from '../pages/Login'
 import { Discussion } from '../pages/discussion'
 import { News } from '../pages/News'
+import { Learn } from '../pages/learn'
 
 const Stack = createNativeStackNavigator()
 
@@ -51,7 +52,7 @@ export function StackRoutes() {
         name="Register"
         component={Register}
         options={{
-          title: 'Registrar'
+          title: 'Registre-se'
         }}
       />
       <Stack.Screen
@@ -64,6 +65,13 @@ export function StackRoutes() {
       <Stack.Screen
         name='News'
         component={News}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Learn"
+        component={Learn}
         options={{
           headerShown: false,
         }}
