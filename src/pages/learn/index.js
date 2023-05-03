@@ -1,6 +1,12 @@
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Linking } from 'react-native'
+
 
 export function Learn() {
+
+  const handleLinkPress = () => {
+    Linking.openURL('https://bitcoin.org/pt_BR/')
+  }
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.titlePage}>É novo no mundo cripto? todos nós somos!</Text>
@@ -23,11 +29,18 @@ export function Learn() {
         <Text style={styles.description}>Por fim, o Bitcoin é muito conveniente. As transações podem ser realizadas em qualquer lugar do mundo, a qualquer hora do dia, e as taxas são geralmente muito baixas em comparação com as transações bancárias convencionais.</Text>
         <Text style={styles.description}>Em resumo, o Bitcoin é uma criptomoeda revolucionária que oferece muitas vantagens, como descentralização, transparência, segurança e conveniência.</Text>
       </View>
+      <View>
+        <Text style={styles.title}>Poder Centralizado e Descentralizado</Text>
+        <Text style={styles.description}>Em termos gerais, a centralização refere-se a um sistema em que um único ponto de controle exerce uma grande influência sobre as decisões e operações relacionadas a esse sistema. Já a descentralização refere-se a um sistema em que várias entidades autônomas operam de forma independente, sem um ponto central de controle.</Text>
+        <Text style={styles.description}>No contexto do blockchain e do Bitcoin, a centralização e a descentralização referem-se à forma como as transações são processadas e validadas na rede. Em um sistema centralizado, as transações são processadas e validadas por uma única entidade, como uma instituição financeira, por exemplo. Já em um sistema descentralizado, as transações são processadas e validadas por uma rede de nós ou computadores interconectados, sem a necessidade de uma autoridade central.</Text>
+        <Text style={styles.description}>O Bitcoin foi criado com o objetivo de ser uma moeda descentralizada, ou seja, sem a necessidade de uma autoridade central que controle as transações. O blockchain do Bitcoin é composto por uma rede de nós interconectados que validam e processam as transações. Dessa forma, a rede é considerada descentralizada, pois não há uma autoridade central que possa exercer controle sobre as operações.</Text>
+        <Text style={styles.description}>No entanto, é importante notar que existem vários níveis de descentralização, e que mesmo uma rede descentralizada pode ter elementos de centralização. Por exemplo, a mineração de Bitcoin é realizada por um grupo relativamente pequeno de mineradores, o que pode ser considerado um elemento de centralização. Além disso, as exchanges que permitem a compra e venda de Bitcoin são geralmente empresas centralizadas que podem exercer algum controle sobre as transações.</Text>
+      </View>
 
       <View style={styles.credits}>
         <Text style={styles.textCredits}>Aprenda mais sobre Bitcoin em:</Text>
-        <TouchableOpacity>
-          <a href='https://bitcoin.org/pt_BR/' style={styles.linkCredits}>bitcoin.org</a>
+        <TouchableOpacity onPress={handleLinkPress}>
+          <Text style={styles.linkCredits}>bitcoin.org</Text>
         </TouchableOpacity>
       </View>
 
