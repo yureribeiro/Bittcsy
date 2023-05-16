@@ -12,6 +12,33 @@ export function Learn() {
       <Text style={styles.titlePage}>É novo no mundo cripto? todos nós somos!</Text>
 
       <View>
+        <Text style={styles.title}>1 Who/Where/When - Quem criou o Bitcoin, onde e quando:</Text>
+        <Text style={styles.description}>O Bitcoin foi proposto em um artigo "Bitcoin: a Peer to Peer ElectronicCash System" enviado por  um  participante que utilizava o pseudônimo de Satoshi Nakamoto. 2008 em um grupo de e-mails de cypherpunks. Em 18 de agosto de 2008, o domínio bitcoin.org foi registrado, em 31 de outubro, o whitepaper publicado e, em janeiro de 2009, o código aberto foi divulgado.</Text>
+        <Text style={styles.description}>Momento em que o sistema começou a rodar, com a mensagem "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks” registrada no primeiro bloco em 3 de janeiro de 2009. Nesse grupo, congregavam os  principais cypherpunks, experts  em criptografia e ativistas do austro-libertarianismo, em decorrência disso, o espaço era  utilizado por  alguns  de  seus participantes como meio de divulgação e teste de softwares abertos e descentralizados, em grande parte como resposta aos  abusos reincidentes por  parte dos  governos dos  seus privilégios de  senhoriagem e  monopólio de  emissão de  moeda.</Text>
+        <Text style={styles.description}>Os integrantes desse  grupo sabiam que  o  domínio da  criptografia pelo indivíduo médio era um fator fundamental para evitar o totalitarismo</Text>
+        <Text style={styles.descriptionUp}>"O problema raiz da moeda convencional é toda a confiança necessária para fazê-la funcionar.  O Banco Central deve ser confiável para não desvalorizar a moeda, mas o histórico das moedas fiduciárias está cheio de violações dessa confiança." - Satoshi Nakamoto.</Text>
+        <Text style={styles.description}>Após propor o whitepaper e contribuir ativamente na comunidade nos primeiros anos, Satoshi Nakamoto  se  despediu e deixou o projeto que continuou de maneira descentralizada. Os primeiros bitcoins minerados, supostamente por ele, não foram movidos – servindo de prova de segurança das carteiras mais modernas e de garantia de que o criador até hoje não obteve vantagem pecuniária pela venda dos primeiros tokens criados.</Text>
+
+        <Text style={styles.title}> Em  que  lugar fica  o  Bitcoin?</Text>
+        <Text style={styles.description}> Todos os  registros de  transações se encontram em cada nó (full  node),  que  totalizam mais de  16  mil usuários com o cliente instalado (nodes ou  nós  públicos).</Text>
+        <Text style={styles.description}> Desta maneira, o Bitcoin não está em nenhum país ou jurisdição específica, mas sim, nas  nuvens!</Text>
+      </View>
+      <View>
+        <Text style={styles.title}>O que é Bitcoin?</Text>
+        <Text style={styles.description}>Em  apenas uma frase: Bitcoin (token)  é  o  dinheiro que  pode ser enviado por qualquer meio de comunicação, Bitcoin é o sistema público e aberto de registros de seu token nativo e o software livre para sua utilização pela Internet.</Text>
+        <Text style={styles.description}>Por isso se afirma que para proibir o uso de bitcoins, globalmente, seria necessário destruir a Internet em todos os países do mundo, ou em uma jurisdição determinada, impedir o direito de expressão, retirando dessa população rádio, SMS,  telefone,  carta e  qualquer outra forma de comunicação com pessoas quem tenham acesso à Internet.</Text>
+        <Text style={styles.description}>Esse sistema já consome mais energia que vários países e possui o maior poder de processamento do planeta — cerca de 90 milhões de terahashes por segundo (TH/s), cerca de 100 vezes maior que os servidores do Google.</Text>
+      </View>
+      <View>
+        <Text style={styles.title}>O Bitcoin tem três funções inatas:</Text>
+        <Text style={styles.descriptionUp}>1 -</Text>
+        <Text style={styles.description}>Sistema de comunicação global, incensurável, público e perpétuo  –  que  garante a  faculdade de  troca de informações e registro público de dados fora de qualquer controle estatal</Text>
+        <Text style={styles.descriptionUp}>2 -</Text>
+        <Text style={styles.description}>Sistema de pagamentos que não está sujeito às jurisdições nacionais, o que inviabiliza, na  prática, controles de  capitais (incluindo no  mercado internacional os bilhões de indivíduos sem acesso a serviços bancários).</Text>
+        <Text style={styles.descriptionUp}>3 -</Text>
+        <Text style={styles.description}>Plataforma de manutenção de saldos como reserva de valor, que apresenta certas características de dinheiro superiores ao ouro e a qualquer reserva de valor anteriormente adotada – libertando seus usuários de expropriações e tributos involuntários, mesmo após a sua morte, incluindo aí até mesmo a senhoriagem e a inflação.</Text>
+      </View>
+      <View>
         <Text style={styles.title}>O que é Blockchain?</Text>
         <Text style={styles.description}>O Blockchain é uma tecnologia que permite o armazenamento e compartilhamento de informações de maneira descentralizada e segura. Em outras palavras, é um livro-razão digital que registra todas as transações que acontecem em uma rede, como se fosse um registro de operações bancárias.</Text>
         <Text style={styles.description}>A grande vantagem do Blockchain é que ele é descentralizado, ou seja, não depende de um único servidor centralizado para armazenar as informações. Isso significa que não há um ponto único de falha que possa comprometer a segurança do sistema.</Text>
@@ -19,15 +46,6 @@ export function Learn() {
         <Text style={styles.description}>Outra grande vantagem do Blockchain é que ele pode ser usado para criar contratos inteligentes, que são programas que executam automaticamente as regras de um contrato quando certas condições são atendidas. Isso pode simplificar e acelerar muitos processos comerciais e legais.</Text>
         <Text style={styles.description}>Por fim, o Blockchain também pode ser usado para criar sistemas de votação eletrônica seguros e transparentes, bem como para rastrear a origem e o histórico de produtos e alimentos, o que pode ser útil para garantir a segurança alimentar e evitar fraudes.</Text>
         <Text style={styles.description}>Em resumo, o Blockchain é uma tecnologia revolucionária que pode trazer muitos benefícios em termos de segurança, transparência e eficiência.</Text>
-      </View>
-      <View>
-        <Text style={styles.title}>O que é Bitcoin?</Text>
-        <Text style={styles.description}>O Bitcoin é uma criptomoeda, ou seja, uma moeda digital que usa criptografia para proteger as transações e controlar a criação de novas unidades. Ele foi criado em 2009 por um programador desconhecido, ou um grupo de programadores, que usou o pseudônimo Satoshi Nakamoto.</Text>
-        <Text style={styles.description}>Uma das principais vantagens do Bitcoin é a descentralização. Isso significa que ele não é controlado por nenhum governo ou instituição financeira centralizada, e as transações são processadas por uma rede global de computadores. Isso torna o Bitcoin muito resistente a intervenções externas, como censura ou confisco.</Text>
-        <Text style={styles.description}>Outra vantagem do Bitcoin é a transparência. Todas as transações são registradas em um livro-razão público chamado Blockchain, que é verificado e mantido pela rede de computadores. Isso significa que todas as transações são públicas e podem ser verificadas por qualquer pessoa, o que aumenta a confiança no sistema.</Text>
-        <Text style={styles.description}>Além disso, o Bitcoin é muito seguro. As transações são protegidas por criptografia de ponta a ponta, o que significa que apenas o remetente e o destinatário têm acesso às informações da transação. Além disso, a rede Bitcoin usa um sistema de consenso descentralizado para validar as transações, o que torna muito difícil para hackers ou fraudadores manipularem o sistema.</Text>
-        <Text style={styles.description}>Por fim, o Bitcoin é muito conveniente. As transações podem ser realizadas em qualquer lugar do mundo, a qualquer hora do dia, e as taxas são geralmente muito baixas em comparação com as transações bancárias convencionais.</Text>
-        <Text style={styles.description}>Em resumo, o Bitcoin é uma criptomoeda revolucionária que oferece muitas vantagens, como descentralização, transparência, segurança e conveniência.</Text>
       </View>
       <View>
         <Text style={styles.title}>Poder Centralizado e Descentralizado</Text>
@@ -38,12 +56,14 @@ export function Learn() {
       </View>
 
       <View style={styles.credits}>
-        <Text style={styles.textCredits}>Aprenda mais sobre Bitcoin em:</Text>
-        <TouchableOpacity onPress={handleLinkPress}>
+        <Text style={styles.textCredits}>mais conteudos aqui em breve...</Text>
+        <Text style={styles.textCredits}>Contem Referências do livro Redpill Bitcoin</Text>
+
+        <TouchableOpacity onPress={handleLinkPress} style={{ flexDirection: 'row', gap: 10 }}>
+          <Text style={styles.textCredits}>Aprenda mais sobre Bitcoin em:</Text>
           <Text style={styles.linkCredits}>bitcoin.org</Text>
         </TouchableOpacity>
       </View>
-
     </ScrollView>
   )
 }
@@ -57,7 +77,7 @@ const styles = StyleSheet.create({
   },
   titlePage: {
     color: '#576CBC',
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 14
   },
@@ -73,16 +93,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 14
   },
+  descriptionUp: {
+    color: '#FFD369',
+    fontStyle: 'italic',
+    fontSize: 15,
+    marginBottom: 14
+  },
   credits: {
-    flexDirection: 'row',
+    padding: 8,
+    flexDirection: 'column',
     gap: 10,
     marginBottom: 200
   },
   textCredits: {
     color: '#FFD369',
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    fontSize: 16
   },
   linkCredits: {
-    color: '#576CBC'
+    color: '#576CBC',
+    fontSize: 16
   }
 })

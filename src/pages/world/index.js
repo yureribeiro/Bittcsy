@@ -40,20 +40,20 @@ export function World() {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Learn')}>
-          <Image source={Learn} style={styles.images} />
-          <Text style={styles.text}>Aprenda mais sobre Blockchain e Bitcoin</Text>
-          <Text style={styles.description}>Como essas tecnologias revolucionárias está mudando o mundo!</Text>
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('NewsTab')}>
+          <Image source={newsImage} style={styles.images} />
+          <Text style={styles.text}>Últimas notícias</Text>
+          <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
           <LinearGradient
             style={styles.gradient}
             colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('NewsTab')}>
-          <Image source={newsImage} style={styles.images} />
-          <Text style={styles.text}>Últimas notícias</Text>
-          <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Learn')}>
+          <Image source={Learn} style={styles.images} />
+          <Text style={styles.text}>Aprenda mais sobre Blockchain e Bitcoin</Text>
+          <Text style={styles.description}>Como essas tecnologias revolucionárias está mudando o mundo!</Text>
           <LinearGradient
             style={styles.gradient}
             colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     zIndex: 99
   },
   description: {
+    width: '90%',
     fontStyle: 'italic',
     color: '#fff',
     fontSize: 15,

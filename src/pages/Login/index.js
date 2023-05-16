@@ -1,9 +1,8 @@
 import React, { useState, useContext } from 'react'
 import { useNavigation } from "@react-navigation/native"
-import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, TextInput, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import { api } from '../../utils/api'
 import { AuthContext } from '../../utils'
-import { ScrollView } from 'react-native'
 
 export function Login() {
   const navigation = useNavigation()
@@ -34,7 +33,7 @@ export function Login() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.text}>Faça Login para contribuir nas discussões da comunidade</Text>
       <TextInput
         style={styles.input}
@@ -51,7 +50,7 @@ export function Login() {
         onChangeText={setPassword}
       />
       <TouchableOpacity
-        style={styles.button}
+        style={styles.buttonLogin}
         onPress={handleLogin}
       >
         <Text style={styles.textButton}>Entrar</Text>
@@ -68,27 +67,25 @@ export function Login() {
       </View>
 
       <View style={styles.containerDetails}>
-        <ScrollView>
-          <Text style={styles.titleDetails}>Importante</Text>
-          <Text style={styles.textDetails}>
-            Por questões técnicas, as mensagens enviadas no chat são apagadas a cada 15 dias.
-            E não se preocupe,
-            suas informações pessoais são mantidas seguras e as contas servem apenas para identificar seus comentários no chat.
-            Nosso objetivo é oferecer um ambiente para que os usuários possam compartilhar suas ideias e aprender mais sobre criptomoedas.
-          </Text>
-          <Text style={styles.titleDetails}>Networking</Text>
-          <Text style={styles.textDetails}>
-            Converse com outros entusiastas de criptomoedas e aprenda ainda mais sobre esse fascinante mundo.
-            Compartilhe suas ideias, dúvidas e opiniões no chat e expanda seu conhecimento!
-          </Text>
-          <Text style={styles.titleDetails}>Objetivo</Text>
-          <Text style={styles.textDetails}>
-            O Bittcsy foi desenvolvido com objetivo e foco em alcançar o público brasileiro e ajudar a conhecer e entender
-            o mundo das criptomoedas, blockchain, auto custódia e segurança do patrimônio e muito mais...
-          </Text>
-        </ScrollView>
+        <Text style={styles.titleDetails}>Importante</Text>
+        <Text style={styles.textDetails}>
+          Por questões técnicas, as mensagens enviadas no chat são apagadas a cada 15 dias.
+          E não se preocupe,
+          suas informações pessoais são mantidas seguras e as contas servem apenas para identificar seus comentários no chat.
+          Nosso objetivo é oferecer um ambiente para que os usuários possam compartilhar suas ideias e aprender mais sobre criptomoedas.
+        </Text>
+        <Text style={styles.titleDetails}>Networking</Text>
+        <Text style={styles.textDetails}>
+          Converse com outros entusiastas de criptomoedas e aprenda ainda mais sobre esse fascinante mundo.
+          Compartilhe suas ideias, dúvidas e opiniões no chat e expanda seu conhecimento!
+        </Text>
+        <Text style={styles.titleDetails}>Objetivo</Text>
+        <Text style={styles.textDetails}>
+          O Bittcsy foi desenvolvido com objetivo e foco em alcançar o público brasileiro e ajudar a conhecer e entender
+          o mundo das criptomoedas, blockchain, auto custódia e segurança do patrimônio e muito mais...
+        </Text>
       </View>
-    </View >
+    </ScrollView>
   )
 }
 
@@ -98,7 +95,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#03051E',
     paddingTop: '15%',
     padding: 14,
-    alignItems: 'center',
   },
   text: {
     color: '#FFD369',
@@ -117,9 +113,15 @@ const styles = StyleSheet.create({
     marginBottom: 14
   },
   button: {
-    backgroundColor: '#FFD369',
+    backgroundColor: '#ECB365',
     padding: 10,
     borderRadius: 8
+  },
+  buttonLogin: {
+    backgroundColor: '#FFD369',
+    padding: 10,
+    borderRadius: 8,
+    alignItems: 'center'
   },
   textButton: {
     fontSize: 16,
@@ -138,6 +140,7 @@ const styles = StyleSheet.create({
     borderWidth: .5,
     borderRadius: 14,
     marginTop: 25,
+    marginBottom: 170,
   },
   titleDetails: {
     color: '#FFD369',

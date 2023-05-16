@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigation } from "@react-navigation/native"
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, ScrollView } from 'react-native'
 import { api } from '../../utils/api'
 
 export function Register() {
@@ -21,7 +21,8 @@ export function Register() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+
       <Text style={styles.text}>Registre seu nome de usuário para contribuir nas discussões</Text>
 
       <Text style={styles.label}>Nome:</Text>
@@ -56,17 +57,14 @@ export function Register() {
       </TouchableOpacity>
 
       <View style={styles.details}>
-        <Text style={styles.label}>
+        <Text style={styles.textDetails}>
           Por questões técnicas, as mensagens enviadas no chat são apagadas a cada 15 dias.
           E não se preocupe,
           suas informações pessoais são mantidas seguras e as contas servem apenas para identificar seus comentários no chat.
         </Text>
-        <Text style={styles.label}>
-          O Bittcsy foi desenvolvido com objetivo e foco em alcançar o público brasileiro e ajudar a conhecer e entender
-          o mundo das criptomoedas, blockchain, auto custódia e segurança do patrimônio e muito mais...
-        </Text>
       </View>
-    </View>
+
+    </ScrollView>
   )
 }
 
@@ -76,7 +74,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#03051E',
     paddingTop: '15%',
     padding: 14,
-    alignItems: 'center',
   },
   text: {
     color: '#FFD369',
@@ -103,14 +100,24 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#FFD369',
     padding: 10,
-    borderRadius: 8
+    borderRadius: 8,
+    alignItems: 'center'
   },
   textButton: {
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   details: {
-    margin: 20,
-    width: '100%'
+    marginTop: 20,
+    marginBottom: 170,
+    width: '95%',
+    paddingLeft: '5%'
+  },
+  textDetails: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    margin: 0,
+    padding: 0
   }
 })
