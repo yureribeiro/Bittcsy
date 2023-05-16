@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Bittcsy",
-    "slug": "Bittcsy - Acompanhe o Mundo Cripto",
+    "slug": "Bittcsy",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icons/cubocomfundo.png",
@@ -20,10 +20,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icons/icon.png",
         "backgroundColor": "#222831"
-      }
+      },
+      "package": "com.yureribeirodev.Bittcsy"
     },
     "web": {
       "favicon": "./assets/icons/icon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a114951c-6463-42f1-a814-613ca3861f2c"
+      }
+    },
+    "owner": "yureribeirodev"
   }
 }

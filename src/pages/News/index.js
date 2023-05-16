@@ -2,40 +2,24 @@ import { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, ScrollView, Modal, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { DetailsNews } from '../../components/modalNews'
-import { GOOGLE_API_KEY } from "@env"
-import { TOKEN_NEWS } from "@env"
 import axios from 'axios'
+import ErrorTranslate from '../../components/tranlateError'
 
 export function News() {
   const [news, setNews] = useState([])
   const [showLink, setShowLink] = useState(false)
+
   const [translatedNews, setTranslatedNews] = useState([])
   const [selectedNewsUrl, setSelectedNewsUrl] = useState(null)
+  const [translationError, setTranslationError] = useState({})
 
   useEffect(() => {
     async function getNews() {
-      const response = await axios.get(`https://cryptopanic.com/api/v1/posts/?auth_token=${TOKEN_NEWS}&public=true`)
+      const response = await axios.get(`https://cryptopanic.com/api/v1/posts/?auth_token=9a983942ff49f9df6c185a86344c58d6e898ddb2&public=true`)
       setNews(response.data.results)
     }
     getNews()
   }, [])
-
-  async function translateText(text) {
-    try {
-      const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=${GOOGLE_API_KEY}&q=${text}&target=pt-br`, {
-        method: 'POST'
-      })
-      const json = await response.json()
-      return json.data.translations[0].translatedText
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  async function handleTranslate(item) {
-    const translatedTitle = await translateText(item.title);
-    setTranslatedNews([...translatedNews, { ...item, title: translatedTitle }]);
-  }
 
   const date = () => {
     const now = new Date(Date.now())
@@ -50,6 +34,32 @@ export function News() {
     )
   }
 
+  async function translateText(text) {
+    try {
+      const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
+        method: 'POST'
+      })
+      const json = await response.json()
+      return json.data.translations[0].translatedText
+    } catch (error) {
+      console.error(error)
+      throw new Error('Ocorreu um erro ao traduzir o texto. Por favor, tente novamente.')
+    }
+  }
+
+  async function handleTranslate(item) {
+    try {
+      const translatedTitle = await translateText(item.title)
+      setTranslatedNews([...translatedNews, { ...item, title: translatedTitle }])
+    } catch (error) {
+      console.error(error.message)
+      setTranslationError((prevErrors) => ({
+        ...prevErrors,
+        [item.id]: error.message,
+      }))
+    }
+  }
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>
@@ -58,23 +68,27 @@ export function News() {
 
       {news.map((item) => {
         const translatedItem = translatedNews.find((i) => i.id === item.id)
+        const error = translationError[item.id]
         return (
           <View key={item.id} style={styles.cardNews}>
             <Text style={styles.titleCard}>{translatedItem ? translatedItem.title : item.title}</Text>
-
+            {error && (
+              <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
+            )}
             <View style={styles.detailsCard}>
               <Text style={styles.textDetailsCard}>{date()}</Text>
               <TouchableOpacity onPress={() => handleTranslate(item)}>
                 <Text style={styles.translateText}>Traduzir</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.linkCard} onPress={() => {
-                setSelectedNewsUrl(item.url);
-                setShowLink(true);
+                setSelectedNewsUrl(item.url)
+                setShowLink(true)
               }}>
                 <Text style={styles.fonteCard}>{item.domain}</Text>
                 <MaterialIcons name='near-me' size={16} color={'#FFD369'} />
               </TouchableOpacity>
             </View>
+
           </View>
         )
       })}
@@ -97,6 +111,7 @@ export function News() {
     </ScrollView >
   )
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -156,5 +171,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#fff',
     fontStyle: 'italic'
-  }
+  },
 })
