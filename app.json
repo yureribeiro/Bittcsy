@@ -2,7 +2,7 @@
   "expo": {
     "name": "Bittcsy",
     "slug": "Bittcsy",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icons/cubocomfundo.png",
     "userInterfaceStyle": "light",
@@ -31,6 +31,12 @@
         "projectId": "a114951c-6463-42f1-a814-613ca3861f2c"
       }
     },
-    "owner": "yureribeirodev"
+    "owner": "yureribeirodev",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a114951c-6463-42f1-a814-613ca3861f2c"
+    }
   }
 }
