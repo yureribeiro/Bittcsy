@@ -18,10 +18,10 @@
     },
     "android": {
       "adaptiveIcon": {
-        "versionCode": "1.0.1",
         "foregroundImage": "./assets/icons/icon.png",
         "backgroundColor": "#222831"
       },
+      "versionCode": "1.0.1",
       "package": "com.yureribeirodev.Bittcsy"
     },
     "web": {
