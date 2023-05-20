@@ -12,11 +12,20 @@ export function News() {
   const [translatedNews, setTranslatedNews] = useState([])
   const [selectedNewsUrl, setSelectedNewsUrl] = useState(null)
   const [translationError, setTranslationError] = useState({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function getNews() {
-      const response = await axios.get(`https://cryptopanic.com/api/v1/posts/?auth_token=9a983942ff49f9df6c185a86344c58d6e898ddb2&public=true`)
-      setNews(response.data.results)
+      try {
+        setLoading(true)
+        await axios.get(`https://cryptopanic.com/api/v1/posts/?auth_token=9a983942ff49f9df6c185a86344c58d6e898ddb2&public=true`)
+          .then(res => {
+            setNews(res.data.results)
+            setLoading(false)
+          })
+      } catch (error) {
+        console.log(error)
+      }
     }
     getNews()
   }, [])
@@ -71,32 +80,35 @@ export function News() {
       <Text style={styles.title}>
         Últimas Notícias
       </Text>
+      {loading ? (
+        <ActivityIndicator size="large" color="#fff" marginTop={25} />
+      ) : (
+        news.map((item) => {
+          const translatedItem = translatedNews.find((i) => i.id === item.id)
+          const error = translationError[item.id]
+          return (
+            <View key={item.id} style={styles.cardNews}>
+              <Text style={styles.titleCard}>{translatedItem ? translatedItem.title : item.title}</Text>
+              {error && (
+                <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
+              )}
+              <View style={styles.detailsCard}>
+                <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
+                  <Text style={styles.translateText}>traduzir notícia</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.linkCard} onPress={() => {
+                  setSelectedNewsUrl(item.url)
+                  setShowLink(true)
+                }}>
+                  <Text style={styles.fonteCard}>{item.domain}</Text>
+                  <MaterialIcons name='near-me' size={16} color={'#FFD369'} />
+                </TouchableOpacity>
+              </View>
 
-      {news.map((item) => {
-        const translatedItem = translatedNews.find((i) => i.id === item.id)
-        const error = translationError[item.id]
-        return (
-          <View key={item.id} style={styles.cardNews}>
-            <Text style={styles.titleCard}>{translatedItem ? translatedItem.title : item.title}</Text>
-            {error && (
-              <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
-            )}
-            <View style={styles.detailsCard}>
-              <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
-                <Text style={styles.translateText}>traduzir notícia</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.linkCard} onPress={() => {
-                setSelectedNewsUrl(item.url)
-                setShowLink(true)
-              }}>
-                <Text style={styles.fonteCard}>{item.domain}</Text>
-                <MaterialIcons name='near-me' size={16} color={'#FFD369'} />
-              </TouchableOpacity>
             </View>
-
-          </View>
-        )
-      })}
+          )
+        })
+      )}
 
       <View style={styles.credits}>
         <Text style={styles.textCredits}>
@@ -129,7 +141,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#FFD369',
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 28,
     fontWeight: 'bold',
     marginTop: 14,
     marginBottom: 20
