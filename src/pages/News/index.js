@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, ScrollView, Modal, TouchableOpacity } from 'react-native'
+import { useState, useEffect, useCallback } from 'react'
+import { View, Text, StyleSheet, ScrollView, Modal, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import { DetailsNews } from '../../components/modalNews'
 import axios from 'axios'
@@ -8,7 +8,7 @@ import ErrorTranslate from '../../components/tranlateError'
 export function News() {
   const [news, setNews] = useState([])
   const [showLink, setShowLink] = useState(false)
-
+  const [refreshing, setRefreshing] = useState(false)
   const [translatedNews, setTranslatedNews] = useState([])
   const [selectedNewsUrl, setSelectedNewsUrl] = useState(null)
   const [translationError, setTranslationError] = useState({})
@@ -20,19 +20,6 @@ export function News() {
     }
     getNews()
   }, [])
-
-  const date = () => {
-    const now = new Date(Date.now())
-    const year = now.getFullYear()
-    const month = now.getMonth() + 1
-    const day = now.getDate()
-    const formattedDate = `${day}/${month}/${year}`
-    return (
-      <Text style={styles.textDetailsCard}>
-        {formattedDate}
-      </Text>
-    )
-  }
 
   async function translateText(text) {
     try {
@@ -60,8 +47,27 @@ export function News() {
     }
   }
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    setTimeout(() => {
+      setRefreshing(false)
+    }, 2000)
+  }, [])
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      style={styles.container}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
+      {refreshing ? <ActivityIndicator size='large' color='#fff' /> :
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, paddingBottom: 14 }}>
+          <MaterialIcons name='south' size={17} color='#fff' />
+          <Text style={styles.updatedPage}>
+            arraste para atualizar!
+          </Text>
+        </View>
+      }
       <Text style={styles.title}>
         Últimas Notícias
       </Text>
@@ -76,9 +82,8 @@ export function News() {
               <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
             )}
             <View style={styles.detailsCard}>
-              <Text style={styles.textDetailsCard}>{date()}</Text>
-              <TouchableOpacity onPress={() => handleTranslate(item)}>
-                <Text style={styles.translateText}>Traduzir</Text>
+              <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
+                <Text style={styles.translateText}>traduzir notícia</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.linkCard} onPress={() => {
                 setSelectedNewsUrl(item.url)
@@ -98,7 +103,7 @@ export function News() {
           Notícias fornecidos pela CryptoPanic
         </Text>
         <Text style={styles.textCredits}>
-          caso as notícias não aparecerem, aguarde um momento e atualize a página.
+          Em caso de muitos acessos, aguarde um momento e atualize a página.
         </Text>
       </View>
 
@@ -157,19 +162,30 @@ const styles = StyleSheet.create({
     gap: 5,
     alignItems: 'center'
   },
+  buttonTranslated: {
+    paddingLeft: 12,
+    paddingRight: 12,
+    padding: 4,
+  },
   translateText: {
-    color: '#FFD369'
+    color: '#FFD369',
+    fontWeight: 'bold',
+    fontSize: 15,
   },
   fonteCard: {
-    color: '#576CBC'
+    color: '#576CBC',
+    fontSize: 15
   },
   credits: {
     marginTop: 14,
     marginBottom: '45%'
   },
   textCredits: {
-    fontSize: 12,
+    fontSize: 15,
     color: '#fff',
     fontStyle: 'italic'
   },
+  updatedPage: {
+    color: '#fff',
+  }
 })

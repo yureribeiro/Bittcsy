@@ -33,7 +33,7 @@ export function World() {
         <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
           <Image source={discussion} style={styles.images} />
           <Text style={styles.text}>Forum de Discussões</Text>
-          <Text style={styles.description}>Faça login e contribua com o chat único da comunidade</Text>
+          <Text style={styles.description}>Faça login e contribua com o chat da comunidade</Text>
           <LinearGradient
             style={styles.gradient}
             colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
