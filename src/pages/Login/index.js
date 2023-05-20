@@ -58,7 +58,7 @@ export function Login() {
       </TouchableOpacity>
 
       <View style={styles.containerRegister}>
-        <Text style={{ color: '#fff', fontWeight: 'bold' }}>Não possui registro na Bittcsy?</Text>
+        <Text style={{ color: '#fff', fontWeight: 'bold', fontSize: 16 }}>Não possui registro na Bittcsy?</Text>
         <TouchableOpacity
           style={styles.button}
           onPress={handleNavigate}
@@ -106,7 +106,8 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     color: '#fff',
-    padding: 6,
+    padding: 12,
+    fontSize: 16,
     backgroundColor: '#222831',
     borderRadius: 8,
     borderWidth: .5,
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   textButton: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: 'bold'
   },
   containerRegister: {
@@ -146,11 +147,12 @@ const styles = StyleSheet.create({
   titleDetails: {
     color: '#FFD369',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 20,
     marginBottom: 7
   },
   textDetails: {
     color: '#fff',
+    fontSize: 17,
     fontWeight: 'bold',
     marginBottom: 20
   },

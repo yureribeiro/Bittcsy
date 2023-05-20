@@ -23,7 +23,7 @@ export function Register() {
   return (
     <ScrollView style={styles.container}>
 
-      <Text style={styles.text}>Registre seu nome de usuário para contribuir nas discussões</Text>
+      <Text style={styles.text}>Registre para contribuir nas discussões</Text>
 
       <Text style={styles.label}>Nome:</Text>
       <TextInput
@@ -77,20 +77,22 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#FFD369',
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 14
   },
   label: {
     color: '#fff',
     fontWeight: 'bold',
+    fontSize: 17,
     width: '100%',
     marginBottom: 14
   },
   input: {
     width: '100%',
     color: '#fff',
-    padding: 6,
+    padding: 12,
+    fontSize: 16,
     backgroundColor: '#222831',
     borderRadius: 8,
     borderWidth: .5,
@@ -101,10 +103,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFD369',
     padding: 10,
     borderRadius: 8,
-    alignItems: 'center'
+    alignItems: 'center',
+    marginTop: 10
   },
   textButton: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   details: {
@@ -115,6 +118,7 @@ const styles = StyleSheet.create({
   },
   textDetails: {
     color: '#fff',
+    fontSize: 16,
     fontWeight: 'bold',
     textAlign: 'center',
     margin: 0,
