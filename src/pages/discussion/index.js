@@ -24,7 +24,6 @@ export function Discussion() {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
-    console.log('atualizei a tela...')
     setTimeout(() => {
       setRefreshing(false)
     }, 2000)
@@ -70,6 +69,8 @@ export function Discussion() {
           style={styles.textInput}
           value={newMessage}
           onChangeText={setNewMessage}
+          placeholder='digite sua mensagem'
+          placeholderTextColor="#fff"
         />
         <TouchableOpacity
           onPress={handleSendMessage}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, StyleSheet, SafeAreaView, TextInput, FlatList } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TextInput, FlatList, ActivityIndicator } from 'react-native'
 import { Coin } from '../../components/coins'
 import axios from 'axios'
 
@@ -8,20 +8,24 @@ export function Home() {
   const navigation = useNavigation()
   const [coins, setCoins] = useState([])
   const [search, setSearch] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     async function getCoins() {
+      setLoading(true)
       await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=70&page=1&sparkline=false')
         .then(res => {
           setCoins(res.data)
+          setLoading(false)
         })
         .catch(error => console.log(error))
+      setLoading(false)
     }
     getCoins()
   }, [])
 
   const handleChange = (text) => {
-    setSearch(text);
+    setSearch(text)
   }
 
   const handleCoinPress = (coin) => {
@@ -43,14 +47,23 @@ export function Home() {
         <Text style={styles.text}>Acompanhe o Mercado</Text>
         <Text style={{ color: '#fff', paddingTop: 10 }}>Selecione para mais detalhes</Text>
       </View>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={coins.filter((coin) => coin.name.toLowerCase().includes(search.toLowerCase()))}
-        keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => (
-          <Coin data={item} onPress={handleCoinPress} />
-        )}
-      />
+      {loading ? (
+        <ActivityIndicator style={styles.loading} size="large" color="#fff" marginTop={25} />
+      ) : (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={coins.filter((coin) => coin.name.toLowerCase().includes(search.toLowerCase()))}
+          keyExtractor={(item) => String(item.id)}
+          renderItem={({ item }) => (
+            <Coin data={item} onPress={handleCoinPress} />
+          )}
+          ListEmptyComponent={() => (
+            <View style={styles.emptyContainer}>
+              <Text style={styles.emptyText}>Nenhuma moeda encontrada...</Text>
+            </View>
+          )}
+        />
+      )}
     </SafeAreaView>
   )
 }
@@ -81,5 +94,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.4)'
+  },
+
+  emptyContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '60%',
+    marginLeft: '20%',
+    marginTop: '20%',
+    backgroundColor: '#222831',
+    padding: 14,
+    borderRadius: 10
+  },
+  emptyText: {
+    color: '#fff',
   }
 })

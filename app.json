@@ -23,7 +23,7 @@
       },
       "versionCode": 2,
       "package": "com.yureribeirodev.Bittcsy"
-    },
+    }, 
     "web": {
       "favicon": "./assets/icons/icon.png"
     },

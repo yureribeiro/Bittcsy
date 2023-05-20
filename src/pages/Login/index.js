@@ -47,6 +47,7 @@ export function Login() {
         placeholder="Senha"
         placeholderTextColor="#fff"
         value={password}
+        secureTextEntry={true}
         onChangeText={setPassword}
       />
       <TouchableOpacity

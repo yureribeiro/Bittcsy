@@ -28,7 +28,7 @@ export function World() {
       <Text style={styles.title}>do mundo cripto!</Text>
 
       <View style={styles.cards}>
-
+        <Text style={{ color: '#fff', fontSize: 22, fontWeight: 'bold' }}>Navegue pelo app</Text>
 
         <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
           <Image source={discussion} style={styles.images} />
@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
     borderRadius: 14
   },
   text: {
-    color: '#fff',
+    color: '#FFD369',
     fontSize: 21,
     fontWeight: 'bold',
     position: 'absolute',
-    bottom: 54,
+    bottom: 56,
     left: 20,
     zIndex: 99
   },
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     width: '90%',
     fontStyle: 'italic',
     color: '#fff',
-    fontSize: 15,
+    fontSize: 17,
     position: 'absolute',
     bottom: 15,
     left: 20,

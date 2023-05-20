@@ -77,26 +77,26 @@ const styles = StyleSheet.create({
   },
   titlePage: {
     color: '#576CBC',
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 14
   },
   title: {
     color: '#FFD369',
-    fontSize: 17,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 14
   },
   description: {
     color: '#FFF',
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 14
   },
   descriptionUp: {
     color: '#FFD369',
     fontStyle: 'italic',
-    fontSize: 15,
+    fontSize: 16,
     marginBottom: 14
   },
   credits: {
