@@ -54,15 +54,17 @@ const styles = StyleSheet.create({
     padding: 5
   },
   image: {
-    width: 35,
-    height: 35,
+    width: 36,
+    height: 36,
   },
   name: {
-    paddingLeft: 10,
+    fontSize: 16,
     color: '#fff',
+    paddingLeft: 10,
     fontWeight: 'bold'
   },
   symbol: {
+    fontSize: 16,
     paddingLeft: 10,
     color: '#FFD369',
     fontWeight: 'bold'
@@ -72,6 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   porcent: {
+    fontSize: 16,
     fontWeight: 'bold',
     color: 'white'
   },

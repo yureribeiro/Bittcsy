@@ -45,7 +45,7 @@ export function Home() {
       </View>
       <View style={styles.filter}>
         <Text style={styles.text}>Acompanhe o Mercado</Text>
-        <Text style={{ color: '#fff', paddingTop: 10 }}>Selecione para mais detalhes</Text>
+        <Text style={{ color: '#fff', paddingTop: 10, fontSize: 16 }}>Selecione para mais detalhes</Text>
       </View>
       {loading ? (
         <ActivityIndicator style={styles.loading} size="large" color="#fff" marginTop={25} />
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#FFD369',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold'
   },
   filter: {
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     color: '#fff',
-    padding: 10,
+    fontSize: 16,
+    padding: 12,
     backgroundColor: '#222831',
     borderRadius: 8,
     borderWidth: .5,
