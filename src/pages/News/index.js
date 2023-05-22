@@ -93,15 +93,16 @@ export function News() {
                 <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
               )}
               <View style={styles.detailsCard}>
-                <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
-                  <Text style={styles.translateText}>traduzir notícia</Text>
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.linkCard} onPress={() => {
                   setSelectedNewsUrl(item.url)
                   setShowLink(true)
                 }}>
                   <Text style={styles.fonteCard}>{item.domain}</Text>
                   <MaterialIcons name='near-me' size={16} color={'#FFD369'} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
+                  <Text style={styles.translateText}>Traduzir notícia de</Text>
+                  <Text style={{ color: '#fff', fontSize: 15 }}>{item.source.title}</Text>
                 </TouchableOpacity>
               </View>
 
@@ -162,12 +163,9 @@ const styles = StyleSheet.create({
   },
   detailsCard: {
     marginTop: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  textDetailsCard: {
-    color: '#9BA4B5'
+    gap: 8,
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   linkCard: {
     flexDirection: 'row',
@@ -175,25 +173,30 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonTranslated: {
-    paddingLeft: 12,
-    paddingRight: 12,
-    padding: 4,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(57, 62, 70, 0.76)',
+    gap: 10,
+    padding: 10,
+    borderWidth: .5,
+    borderColor: 'rgba(204, 204, 204, 0.6)',
+    borderRadius: 7,
   },
   translateText: {
     color: '#FFD369',
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 16,
   },
   fonteCard: {
-    color: '#576CBC',
-    fontSize: 15
+    color: '#DDF7E3',
+    fontSize: 16
   },
   credits: {
     marginTop: 14,
     marginBottom: '45%'
   },
   textCredits: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#fff',
     fontStyle: 'italic'
   },

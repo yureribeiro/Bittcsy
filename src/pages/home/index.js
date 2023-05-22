@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     paddingTop: '10%',
     paddingStart: 14,
     paddingEnd: 14,
+    paddingBottom: 100
   },
   text: {
     color: '#FFD369',
@@ -101,8 +102,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '60%',
-    marginLeft: '20%',
+    width: '70%',
+    marginLeft: '15%',
     marginTop: '20%',
     backgroundColor: '#222831',
     padding: 14,
@@ -110,5 +111,6 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     color: '#fff',
+    fontSize: 17
   }
 })

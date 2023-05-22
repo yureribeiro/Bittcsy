@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     height: 36,
   },
   name: {
-    fontSize: 16,
+    fontSize: 17.5,
     color: '#fff',
     paddingLeft: 10,
     fontWeight: 'bold'
@@ -74,15 +74,15 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   porcent: {
-    fontSize: 16,
+    fontSize: 16.5,
     fontWeight: 'bold',
     color: 'white'
   },
   positive: {
-    color: 'green'
+    color: '#16FF00'
   },
   negative: {
-    color: 'red'
+    color: '#F96666'
   }
 })
 

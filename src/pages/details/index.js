@@ -67,10 +67,10 @@ const styles = StyleSheet.create({
     marginBottom: 14
   },
   name: {
-    fontSize: 20,
+    fontSize: 24,
     color: '#FFD369',
     fontWeight: 'bold',
-    paddingLeft: 20
+    paddingLeft: 25
   },
   image: {
     height: 100,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   list: {
@@ -102,14 +102,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   porcent: {
+    fontSize: 18,
     fontWeight: 'bold',
     color: 'white'
   },
   positive: {
-    color: 'green'
+    color: '#16FF00'
   },
   negative: {
-    color: 'red'
+    color: '#F96666'
   }
 })
 

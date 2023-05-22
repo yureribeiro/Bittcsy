@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     padding: 6,
     borderRadius: 8,
     borderWidth: .5,
-    borderColor: 'rgba(204, 204, 204, 0.4)',
+    borderColor: 'rgba(204, 204, 204, 0.7)',
   },
   textButtom: {
     color: '#FFD369',
