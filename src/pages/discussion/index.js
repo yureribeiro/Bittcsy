@@ -116,10 +116,12 @@ const styles = StyleSheet.create({
   },
   contentMessage: {
     color: '#fff',
+    fontSize: 16,
   },
   authorMessage: {
     color: '#FFD369',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 17,
   },
 
   // input messeges
@@ -131,13 +133,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#222831',
     borderRadius: 8,
     borderWidth: .5,
-    borderColor: 'rgba(204, 204, 204, 0.4)',
+    borderColor: 'rgba(204, 204, 204, 0.6)',
     padding: 6,
     marginBottom: '28%'
   },
   textInput: {
     width: '70%',
     color: '#fff',
+    fontSize: 16,
     padding: 6
   },
   submitButton: {
@@ -150,10 +153,12 @@ const styles = StyleSheet.create({
   },
   textButtom: {
     color: '#FFD369',
-    fontWeight: 'bold'
+    padding: 6,
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 
   activityIndicator: {
-    marginBottom: 14
+    marginBottom: 16
   }
 }) 
