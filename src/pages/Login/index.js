@@ -35,16 +35,18 @@ export function Login() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.text}>Faça Login para contribuir nas discussões da comunidade</Text>
+      <Text style={styles.label}>Nome:</Text>
       <TextInput
         style={styles.input}
-        placeholder="Email"
+        placeholder="exemplo@exemplo.com"
         placeholderTextColor="#fff"
         value={email}
         onChangeText={setEmail}
       />
+      <Text style={styles.label}>Senha:</Text>
       <TextInput
         style={styles.input}
-        placeholder="Senha"
+        placeholder="*****"
         placeholderTextColor="#fff"
         value={password}
         secureTextEntry={true}
@@ -99,8 +101,15 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#FFD369',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
+    marginBottom: 14
+  },
+  label: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 17,
+    width: '100%',
     marginBottom: 14
   },
   input: {
@@ -116,17 +125,20 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#ECB365',
-    padding: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 25,
+    paddingRight: 25,
     borderRadius: 8
   },
   buttonLogin: {
     backgroundColor: '#FFD369',
-    padding: 10,
+    padding: 15,
     borderRadius: 8,
     alignItems: 'center'
   },
   textButton: {
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: 'bold'
   },
   containerRegister: {
@@ -147,12 +159,12 @@ const styles = StyleSheet.create({
   titleDetails: {
     color: '#FFD369',
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 22,
     marginBottom: 7
   },
   textDetails: {
     color: '#fff',
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 20
   },

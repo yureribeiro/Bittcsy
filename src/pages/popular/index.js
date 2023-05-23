@@ -15,9 +15,9 @@ export function Popular() {
 
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
-      <View style={{ marginLeft: 30, marginBottom: 20 }}>
-        <Text style={{ color: '#fff', fontSize: 16 }}>As 7 moedas mais populares</Text>
-        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 16 }}>baseado em pesquisas dos usuários nas últimas 24 horas</Text>
+      <View style={{ padding: 15, marginBottom: 20, gap: 10 }}>
+        <Text style={{ color: '#FFD369', fontSize: 20, fontWeight: 'bold' }}>As 7 moedas mais populares</Text>
+        <Text style={{ color: '#fff', fontSize: 16 }}>baseado em pesquisas dos usuários nas últimas 24 horas</Text>
         <Text style={styles.text}>(ordenadas por popularidade)</Text>
       </View>
       <View style={styles.trend}>
@@ -47,10 +47,10 @@ export function Popular() {
             )
           })
         )}
-        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 16 }}>
+        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 17 }}>
           fonte: CoinGecko
         </Text>
-        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 16 }}>
+        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 17 }}>
           CoinGecko fornece uma análise fundamental do mercado de criptomoedas.
         </Text>
       </View>
@@ -91,16 +91,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   text: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#fff',
   },
   image: {
-    width: 30,
-    height: 30
+    width: 35,
+    height: 35
   },
   symbol: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: 'bold',
     color: '#FFD369',
   },

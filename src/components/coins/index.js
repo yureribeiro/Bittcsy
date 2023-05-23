@@ -42,7 +42,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingLeft: 14,
-    paddingEnd: 20
+    paddingEnd: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: 'rgba(204, 204, 204, 0.4)',
   },
   cripto: {
     flexDirection: 'row',

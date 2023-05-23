@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs' //Tabbar-bottom
 import { StackRoutes } from './stackRoutes'
 import { World } from '../pages/world'
-import { Discussion } from '../pages/discussion'
 import { News } from '../pages/News'
 import CustomTabBar from '../components/customTabBar'
 

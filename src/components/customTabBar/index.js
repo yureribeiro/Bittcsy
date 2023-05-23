@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     position: 'absolute',
     bottom: 0,
-    backgroundColor: '#222831',
+    backgroundColor: '#393E46',
     borderRadius: 99,
     gap: 18,
     // sombra no android

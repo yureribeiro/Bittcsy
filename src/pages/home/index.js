@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, StyleSheet, SafeAreaView, TextInput, FlatList, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, TextInput, FlatList, ActivityIndicator } from 'react-native'
 import { Coin } from '../../components/coins'
 import axios from 'axios'
 
@@ -33,7 +33,7 @@ export function Home() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.filter}>
         <TextInput
           style={styles.input}
@@ -43,10 +43,11 @@ export function Home() {
           value={search}
         />
       </View>
-      <View style={styles.filter}>
+      <View style={styles.containerTitle}>
         <Text style={styles.text}>Acompanhe o Mercado</Text>
-        <Text style={{ color: '#fff', paddingTop: 10, fontSize: 16 }}>Selecione para mais detalhes</Text>
+        <Text style={{ color: '#fff', paddingTop: 10, fontSize: 18 }}>Selecione para mais detalhes</Text>
       </View>
+
       {loading ? (
         <ActivityIndicator style={styles.loading} size="large" color="#fff" marginTop={25} />
       ) : (
@@ -64,7 +65,7 @@ export function Home() {
           )}
         />
       )}
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -84,18 +85,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   filter: {
-    marginBottom: 14,
-    paddingTop: 10
+    marginBottom: 5,
+    paddingTop: 20
   },
   input: {
     width: '100%',
     color: '#fff',
-    fontSize: 16,
+    fontSize: 18,
     padding: 12,
     backgroundColor: '#222831',
     borderRadius: 8,
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.4)'
+  },
+  containerTitle: {
+    padding: 10,
+    marginBottom: 14
   },
 
   emptyContainer: {
