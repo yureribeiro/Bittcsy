@@ -16,14 +16,14 @@ export function StackRoutes() {
       screenOptions={{
         headerStyle: { backgroundColor: '#222831' },
         headerTintColor: 'white',
-        headerTitleStyle: { color: 'white' }
+        headerTitleStyle: { color: 'white' },
       }}
     >
       <Stack.Screen
         name='Home'
         component={Home}
         options={{
-          headerShown: false,
+          title: 'Criptomoedas'
         }}
       />
       <Stack.Screen

@@ -4,6 +4,7 @@ import newsImage from '../../../assets/news-image.jpg'
 import worldImage from '../../../assets/world-image.jpg'
 import discussion from '../../../assets/discussion.jpg'
 import Learn from '../../../assets/learn.jpg'
+import mercadoImage from '../../../assets/mercadocripto.jpg'
 
 
 import { useNavigation } from "@react-navigation/native"
@@ -30,10 +31,10 @@ export function World() {
       <View style={styles.cards}>
         <Text style={{ color: '#fff', fontSize: 22, fontWeight: 'bold' }}>Navegue pelo app</Text>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
-          <Image source={discussion} style={styles.images} />
-          <Text style={styles.text}>Forum de Discussões</Text>
-          <Text style={styles.description}>Faça login e contribua com o chat da comunidade</Text>
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('WorldTab')}>
+          <Image source={mercadoImage} style={styles.images} />
+          <Text style={styles.text}>Mercado Cripto</Text>
+          <Text style={styles.description}>Acompanhe a cotação e o status das criptomoedas</Text>
           <LinearGradient
             style={styles.gradient}
             colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
@@ -44,6 +45,16 @@ export function World() {
           <Image source={newsImage} style={styles.images} />
           <Text style={styles.text}>Últimas notícias</Text>
           <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
+          <LinearGradient
+            style={styles.gradient}
+            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
+          <Image source={discussion} style={styles.images} />
+          <Text style={styles.text}>Forum de Discussões</Text>
+          <Text style={styles.description}>Faça login e contribua com o chat da comunidade</Text>
           <LinearGradient
             style={styles.gradient}
             colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}

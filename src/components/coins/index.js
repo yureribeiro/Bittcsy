@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingLeft: 14,
     paddingEnd: 20,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 8,
+    paddingBottom: 8,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(204, 204, 204, 0.4)',
@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
     padding: 5
   },
   image: {
-    width: 36,
-    height: 36,
+    width: 35,
+    height: 35,
   },
   name: {
     fontSize: 17.5,

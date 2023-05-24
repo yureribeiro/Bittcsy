@@ -28,7 +28,7 @@ export function Routes() {
         name='WorldTab'
         component={StackRoutes}
         options={{
-          tabBarIcon: 'public'
+          tabBarIcon: 'timeline'
         }}
       />
 
