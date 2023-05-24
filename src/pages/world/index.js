@@ -25,8 +25,8 @@ export function World() {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Fique por dentro</Text>
-      <Text style={styles.title}>do mundo cripto!</Text>
+      <Text style={styles.title}>Fique por dentro do</Text>
+      <Text style={styles.title}>mundo cripto!</Text>
 
       <View style={styles.cards}>
         <Text style={{ color: '#fff', fontSize: 22, fontWeight: 'bold' }}>Navegue pelo app</Text>
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   content: {
-    borderWidth: .5,
+    borderWidth: 1,
     borderColor: 'rgba(204, 204, 204, 0.6)',
     borderRadius: 14,
     height: 195,

@@ -1,16 +1,13 @@
 import { useState, useEffect, useCallback } from 'react'
-import { View, Text, StyleSheet, ScrollView, Modal, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
-import { DetailsNews } from '../../components/modalNews'
 import axios from 'axios'
 import ErrorTranslate from '../../components/tranlateError'
 
 export function News() {
   const [news, setNews] = useState([])
-  const [showLink, setShowLink] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
   const [translatedNews, setTranslatedNews] = useState([])
-  const [selectedNewsUrl, setSelectedNewsUrl] = useState(null)
   const [translationError, setTranslationError] = useState({})
   const [loading, setLoading] = useState(false)
 
@@ -32,7 +29,7 @@ export function News() {
 
   async function translateText(text) {
     try {
-      const response = await fetch(`https://translation.ogleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
+      const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
         method: 'POST'
       })
       const json = await response.json()
@@ -68,7 +65,8 @@ export function News() {
       style={styles.container}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }>
+      }
+    >
       {refreshing ? <ActivityIndicator size='large' color='#fff' /> :
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, paddingBottom: 14 }}>
           <MaterialIcons name='south' size={17} color='#fff' />
@@ -93,19 +91,10 @@ export function News() {
                 <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
               )}
               <View style={styles.detailsCard}>
-                <TouchableOpacity style={styles.linkCard} onPress={() => {
-                  setSelectedNewsUrl(item.url)
-                  setShowLink(true)
-                }}>
-                  <Text style={styles.fonteCard}>{item.domain}</Text>
-                  <MaterialIcons name='near-me' size={16} color={'#FFD369'} />
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
-                  <Text style={styles.translateText}>Traduzir notícia de</Text>
-                  <Text style={{ color: '#fff', fontSize: 16 }}>{item.source.title}</Text>
+                  <Text style={styles.translateText}>Traduzir notícia</Text>
                 </TouchableOpacity>
               </View>
-
             </View>
           )
         })
@@ -113,19 +102,12 @@ export function News() {
 
       <View style={styles.credits}>
         <Text style={styles.textCredits}>
-          Notícias fornecidos pela CryptoPanic
+          Notícias fornecidos pela CryptoPanic, no plano gratuito fornecemos o titulo das notícias.
         </Text>
         <Text style={styles.textCredits}>
           Em caso de muitos acessos, aguarde um momento e atualize a página.
         </Text>
       </View>
-
-      <Modal visible={showLink} animationType='slide'>
-        <DetailsNews
-          handleClose={() => setShowLink(false)}
-          linkUrl={selectedNewsUrl}
-        />
-      </Modal>
     </ScrollView >
   )
 }
@@ -147,6 +129,8 @@ const styles = StyleSheet.create({
     marginTop: 14,
     marginBottom: 20
   },
+
+  // notícias
   cardNews: {
     backgroundColor: 'rgba(57, 62, 70, 0.56)',
     gap: 8,
@@ -161,25 +145,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold'
   },
+
+  // tradução
   detailsCard: {
-    marginTop: 8,
-    gap: 8,
-    flexDirection: 'column',
+    margin: 8,
     alignItems: 'center',
   },
-  linkCard: {
-    flexDirection: 'row',
-    gap: 5,
-    alignItems: 'center'
-  },
   buttonTranslated: {
-    flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor: 'rgba(57, 62, 70, 0.76)',
-    gap: 10,
     padding: 13,
-    borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.6)',
+    borderWidth: .5,
     borderRadius: 7,
   },
   translateText: {
@@ -187,20 +164,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-  fonteCard: {
-    color: '#DDF7E3',
-    fontSize: 16
-  },
+
+  // creditos da pagina
   credits: {
     marginTop: 14,
     marginBottom: '45%'
   },
   textCredits: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#fff',
     fontStyle: 'italic'
   },
+
+  // loading ao carregar as noticias 
   updatedPage: {
     color: '#fff',
+    fontSize: 15
   }
 })
