@@ -16,14 +16,14 @@ export function StackRoutes() {
       screenOptions={{
         headerStyle: { backgroundColor: '#222831' },
         headerTintColor: 'white',
-        headerTitleStyle: { color: 'white' },
+        headerTitleStyle: { color: 'white', fontSize: 23 },
       }}
     >
       <Stack.Screen
         name='Home'
         component={Home}
         options={{
-          title: 'Criptomoedas'
+          title: 'Criptomoedas',
         }}
       />
       <Stack.Screen
@@ -52,7 +52,7 @@ export function StackRoutes() {
         name="Register"
         component={Register}
         options={{
-          title: 'Registre-se'
+          title: 'Crie sua conta na Bittscy'
         }}
       />
       <Stack.Screen

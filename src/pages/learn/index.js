@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     padding: 20
   },
   titlePage: {
-    color: '#576CBC',
+    color: '#DDF7E3',
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 14
@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
   textCredits: {
     color: '#FFD369',
     fontStyle: 'italic',
-    fontSize: 16
+    fontSize: 17
   },
   linkCredits: {
-    color: '#576CBC',
-    fontSize: 16
+    color: '#DDF7E3',
+    fontSize: 17
   }
 })
