@@ -16,21 +16,22 @@ export function Routes() {
       }}
       tabBar={(props) => <CustomTabBar {...props} />}
     >
-
       <Tab.Screen
         name='HomeTab'
-        component={StackRoutes}
+        component={World}
         options={{
           tabBarIcon: 'home'
         }}
       />
+
       <Tab.Screen
         name='WorldTab'
-        component={World}
+        component={StackRoutes}
         options={{
           tabBarIcon: 'public'
         }}
       />
+
       <Tab.Screen
         name='NewsTab'
         component={News}

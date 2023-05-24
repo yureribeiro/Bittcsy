@@ -45,7 +45,7 @@ export function StackRoutes() {
         name="Login"
         component={Login}
         options={{
-          title: 'Entrar'
+          title: 'Acesse sua conta Bittcsy'
         }}
       />
       <Stack.Screen
