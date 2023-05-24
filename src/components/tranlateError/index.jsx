@@ -5,7 +5,7 @@ const ErrorTranslate = ({ error, onClose }) => {
     <View id="divtranslate" style={styles.divTranslateError}>
       <Text style={styles.translateErrorText}>{error}</Text>
       <TouchableOpacity onPress={onClose} style={styles.buttonClose}>
-        <Text style={styles.textButtonError}>X</Text>
+        <Text style={styles.textButtonError}>OK</Text>
       </TouchableOpacity>
     </View>
   )
@@ -19,14 +19,19 @@ const styles = StyleSheet.create({
     borderWidth: .5,
     borderRadius: 14,
     padding: 5,
+    margin: 12,
   },
   translateErrorText: {
-    color: '#fff',
-    fontWeight: 'bold'
+    color: '#FFD369',
+    fontWeight: 'bold',
+    fontSize: 18,
+    margin: 10,
   },
   buttonClose: {
-    width: 40,
-    padding: 5,
+    width: 120,
+    padding: 16,
+    marginTop: 10,
+    marginBottom: 10,
     backgroundColor: 'rgba(57, 62, 70, 0.56)',
     borderWidth: .5,
     borderRadius: 10,
@@ -35,7 +40,8 @@ const styles = StyleSheet.create({
   },
   textButtonError: {
     color: '#FFD369',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 17,
   }
 })
 

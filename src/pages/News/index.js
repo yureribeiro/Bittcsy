@@ -32,7 +32,7 @@ export function News() {
 
   async function translateText(text) {
     try {
-      const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
+      const response = await fetch(`https://translation.ogleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
         method: 'POST'
       })
       const json = await response.json()
@@ -102,7 +102,7 @@ export function News() {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
                   <Text style={styles.translateText}>Traduzir notícia de</Text>
-                  <Text style={{ color: '#fff', fontSize: 15 }}>{item.source.title}</Text>
+                  <Text style={{ color: '#fff', fontSize: 16 }}>{item.source.title}</Text>
                 </TouchableOpacity>
               </View>
 
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(57, 62, 70, 0.76)',
     gap: 10,
-    padding: 10,
+    padding: 13,
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.6)',
     borderRadius: 7,

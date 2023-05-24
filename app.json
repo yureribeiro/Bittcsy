@@ -7,8 +7,9 @@
     "icon": "./assets/icons/cubocomfundo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/icons/screen.png",
-      "resizeMode": "cover"
+      "image": "./assets/icons/scrennsplash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#222831"
     },
     "assetBundlePatterns": [
       "**/*"
