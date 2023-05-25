@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/icons/icon.png",
         "backgroundColor": "#222831"
       },
-      "versionCode": 5.1,
+      "versionCode": 6,
       "package": "com.yureribeirodev.Bittcsy"
     }, 
     "web": {
