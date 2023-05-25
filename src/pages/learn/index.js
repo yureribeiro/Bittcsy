@@ -59,10 +59,13 @@ export function Learn() {
         <Text style={styles.textCredits}>mais conteudos aqui em breve...</Text>
         <Text style={styles.textCredits}>Contem Referências do livro Redpill Bitcoin</Text>
 
-        <TouchableOpacity onPress={handleLinkPress} style={{ flexDirection: 'row', gap: 10 }}>
+        <View style={{ flexDirection: 'column' }}>
           <Text style={styles.textCredits}>Aprenda mais sobre Bitcoin em:</Text>
-          <Text style={styles.linkCredits}>bitcoin.org</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.contentlink} onPress={handleLinkPress}>
+            <Text style={styles.linkCredits}>bitcoin.org</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
     </ScrollView>
   )
@@ -89,14 +92,14 @@ const styles = StyleSheet.create({
   },
   description: {
     color: '#FFF',
-    fontSize: 18,
+    fontSize: 19,
     fontWeight: 'bold',
     marginBottom: 14
   },
   descriptionUp: {
     color: '#FFD369',
     fontStyle: 'italic',
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 14
   },
   credits: {
@@ -110,8 +113,13 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     fontSize: 17
   },
+  contentlink: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 50
+  },
   linkCredits: {
     color: '#DDF7E3',
-    fontSize: 17
+    fontSize: 20
   }
 })
