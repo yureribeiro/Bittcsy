@@ -6,7 +6,6 @@ import discussion from '../../../assets/discussion.jpg'
 import Learn from '../../../assets/learn.jpg'
 import mercadoImage from '../../../assets/mercadocripto.jpg'
 
-
 import { useNavigation } from "@react-navigation/native"
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../utils'
@@ -89,18 +88,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#03051E',
-    paddingTop: '15%',
+    paddingTop: '10%',
     paddingLeft: '5%'
-  },
-  cards: {
-    marginTop: 14,
-    gap: 20,
-    paddingBottom: '50%'
   },
   title: {
     color: '#FFD369',
     fontSize: 26,
     fontWeight: 'bold',
+  },
+  cards: {
+    marginTop: 14,
+    gap: 20,
+    paddingBottom: '50%'
   },
   content: {
     borderWidth: 1,

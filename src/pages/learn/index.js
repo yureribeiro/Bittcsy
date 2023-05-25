@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Linking } from 'r
 export function Learn() {
 
   const handleLinkPress = () => {
-    Linking.openURL('https://bitcoin.org/pt_BR/')
+    Linking.openURL('https://bitcoin.org/en/')
   }
 
   return (

@@ -81,7 +81,7 @@ export function News() {
       {loading ? (
         <ActivityIndicator size="large" color="#fff" marginTop={25} />
       ) : (
-        news.map((item) => {
+        news.map((item, index) => {
           const translatedItem = translatedNews.find((i) => i.id === item.id)
           const error = translationError[item.id]
           return (
@@ -90,11 +90,13 @@ export function News() {
               {error && (
                 <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
               )}
-              <View style={styles.detailsCard}>
-                <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
-                  <Text style={styles.translateText}>Traduzir notícia</Text>
-                </TouchableOpacity>
+              <View>
+                {/* DATA AQUI */}
               </View>
+              <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
+                <Text style={styles.translateText}>traduzir</Text>
+                <Text style={styles.translateText}>{index + 1}</Text>
+              </TouchableOpacity>
             </View>
           )
         })
@@ -102,7 +104,7 @@ export function News() {
 
       <View style={styles.credits}>
         <Text style={styles.textCredits}>
-          Notícias fornecidos pela CryptoPanic, no plano gratuito fornecemos o titulo das notícias.
+          Notícias fornecidos pela CryptoPanic, no plano gratuito, fornecemos o titulo das notícias.
         </Text>
         <Text style={styles.textCredits}>
           Em caso de muitos acessos, aguarde um momento e atualize a página.
@@ -137,8 +139,8 @@ const styles = StyleSheet.create({
     borderWidth: .5,
     borderColor: 'rgba(204, 204, 204, 0.6)',
     borderRadius: 14,
-    padding: 10,
-    marginBottom: 14
+    padding: 15,
+    marginBottom: 16
   },
   titleCard: {
     color: '#fff',
@@ -147,21 +149,16 @@ const styles = StyleSheet.create({
   },
 
   // tradução
-  detailsCard: {
-    margin: 8,
-    alignItems: 'center',
-  },
   buttonTranslated: {
-    justifyContent: 'center',
-    backgroundColor: 'rgba(57, 62, 70, 0.76)',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: 5,
     padding: 13,
-    borderColor: 'rgba(204, 204, 204, 0.6)',
-    borderWidth: .5,
-    borderRadius: 7,
   },
   translateText: {
     color: '#FFD369',
     fontWeight: 'bold',
+    fontStyle: 'italic',
     fontSize: 16,
   },
 

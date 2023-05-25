@@ -16,14 +16,14 @@ export function Popular() {
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={{ padding: 15, marginBottom: 20, gap: 10 }}>
-        <Text style={{ color: '#FFD369', fontSize: 20, fontWeight: 'bold' }}>As 7 moedas mais populares</Text>
-        <Text style={{ color: '#fff', fontSize: 16 }}>baseado em pesquisas dos usuários nas últimas 24 horas</Text>
+        <Text style={{ color: '#FFD369', fontSize: 24, fontWeight: 'bold' }}>As 7 moedas mais populares</Text>
+        <Text style={{ color: '#fff', fontSize: 18 }}>baseado em pesquisas dos usuários nas últimas 24 horas (coinGecko)</Text>
         <Text style={styles.text}>(ordenadas por popularidade)</Text>
       </View>
       <View style={styles.trend}>
         {trend.length === 0 ? (
           <ActivityIndicator
-            fontSize={28}
+            fontSize={30}
             color='#fff'
           />
         ) : (
@@ -32,7 +32,7 @@ export function Popular() {
               <View key={coin.item.id} style={styles.containerTrend}>
                 <View style={styles.trendCoin}>
                   <View style={{ flexDirection: 'row', gap: 10 }}>
-                    <Text style={styles.index}>{index + 1}   </Text>
+                    <Text style={styles.index}>{index + 1}</Text>
                     <Image
                       source={{ uri: coin.item.large }}
                       style={styles.image}
@@ -47,17 +47,17 @@ export function Popular() {
             )
           })
         )}
-        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 17 }}>
+        <Text style={{ color: '#FFD369', marginBottom: 10, fontSize: 19 }}>
           fonte: CoinGecko
         </Text>
-        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 17 }}>
+        <Text style={{ color: '#fff', marginBottom: 14, fontSize: 19 }}>
           CoinGecko fornece uma análise fundamental do mercado de criptomoedas.
         </Text>
       </View>
     </ScrollView >
   )
 }
-// 4faae1745ee545949fb759c797e8b036
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -86,21 +86,21 @@ const styles = StyleSheet.create({
     padding: 6,
   },
   index: {
-    fontSize: 20,
+    fontSize: 22,
     color: '#fff',
     fontWeight: 'bold'
   },
   text: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#fff',
   },
   image: {
-    width: 35,
-    height: 35
+    width: 40,
+    height: 40
   },
   symbol: {
-    fontSize: 17,
+    fontSize: 19,
     fontWeight: 'bold',
     color: '#FFD369',
   },
