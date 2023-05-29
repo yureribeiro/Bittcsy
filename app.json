@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/icons/scrennsplash.png",
       "resizeMode": "cover",
-      "backgroundColor": "#222831"
+      "backgroundColor": "#2f3846"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/icons/icon.png",
         "backgroundColor": "#222831"
       },
-      "versionCode": 6,
+      "versionCode": 7,
       "package": "com.yureribeirodev.Bittcsy"
     }, 
     "web": {

@@ -61,7 +61,7 @@ export function Popular() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03051E',
+    backgroundColor: '#030522',
     paddingTop: '5%',
   },
   loading: {
