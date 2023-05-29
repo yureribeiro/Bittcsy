@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   content: {
     borderWidth: 1,
-    borderColor: 'rgba(204, 204, 204, 0.6)',
+    borderColor: '#ffd36999',
     borderRadius: 14,
     height: 195,
     width: '95%'
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     borderRadius: 14
   },
   text: {
-    color: '#FFD369',
+    color: '#fbba1e',
     fontSize: 21,
     fontWeight: 'bold',
     position: 'absolute',
