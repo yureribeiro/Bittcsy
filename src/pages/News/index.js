@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     gap: 5,
-    padding: 13,
+    padding: 16
   },
   translateText: {
     color: '#FFD369',
