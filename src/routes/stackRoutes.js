@@ -23,7 +23,7 @@ export function StackRoutes() {
         name='Home'
         component={Home}
         options={{
-          title: 'Criptomoedas',
+          headerShown: false,
         }}
       />
       <Stack.Screen
