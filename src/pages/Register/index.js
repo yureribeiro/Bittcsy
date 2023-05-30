@@ -71,7 +71,7 @@ export function Register() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03051E',
+    backgroundColor: '#202138',
     padding: 14,
   },
   text: {

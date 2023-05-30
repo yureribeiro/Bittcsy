@@ -86,7 +86,7 @@ export function Discussion() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03051E',
+    backgroundColor: '#202138',
     paddingTop: '18%',
     padding: 10,
     flexDirection: 'column',

@@ -56,7 +56,7 @@ export function Details() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03051E',
+    backgroundColor: '#202138',
     paddingLeft: '10%',
     paddingTop: 10
   },

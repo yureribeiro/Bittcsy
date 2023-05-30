@@ -72,7 +72,7 @@ export function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#030522',
+    backgroundColor: '#202138',
     paddingTop: '10%',
     paddingStart: 14,
     paddingEnd: 14,

@@ -90,21 +90,24 @@ export function News() {
               {error && (
                 <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
               )}
-              <View>
-                {/* DATA AQUI */}
+              <View style={styles.detailsNews}>
+                <Text style={styles.domain}>{item.domain}</Text>
+                <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
+                  <Text style={styles.translateText}>traduzir notícia</Text>
+                  <Text style={styles.translateText}>{index + 1}</Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
-                <Text style={styles.translateText}>traduzir</Text>
-                <Text style={styles.translateText}>{index + 1}</Text>
-              </TouchableOpacity>
             </View>
           )
         })
       )}
 
       <View style={styles.credits}>
+        <Text style={{ ...styles.textCredits, color: '#FFD369', fontWeight: 'bold' }}>
+          Fonte: CryptoPanic
+        </Text>
         <Text style={styles.textCredits}>
-          Notícias fornecidos pela CryptoPanic, no plano gratuito, fornecemos o titulo das notícias.
+          Notícias completas em breve com Bittcsy PRO.
         </Text>
         <Text style={styles.textCredits}>
           Em caso de muitos acessos, aguarde um momento e atualize a página.
@@ -118,7 +121,7 @@ export function News() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03051E',
+    backgroundColor: '#202138',
     paddingTop: '10%',
     paddingStart: 14,
     paddingEnd: 14,
@@ -149,9 +152,18 @@ const styles = StyleSheet.create({
   },
 
   // tradução
+  detailsNews: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  domain: {
+    color: '#C4DFDF',
+    fontWeight: 'bold',
+    fontSize: 18
+  },
   buttonTranslated: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
     gap: 5,
     padding: 16
   },
@@ -159,13 +171,13 @@ const styles = StyleSheet.create({
     color: '#FFD369',
     fontWeight: 'bold',
     fontStyle: 'italic',
-    fontSize: 16,
+    fontSize: 18,
   },
 
   // creditos da pagina
   credits: {
     marginTop: 14,
-    marginBottom: '45%'
+    marginBottom: '45%',
   },
   textCredits: {
     fontSize: 18,

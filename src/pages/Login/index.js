@@ -95,7 +95,7 @@ export function Login() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03051E',
+    backgroundColor: '#202138',
     paddingTop: '15%',
     padding: 14,
   },

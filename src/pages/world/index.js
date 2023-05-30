@@ -87,7 +87,7 @@ export function World() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#03051E',
+    backgroundColor: '#25334c',
     paddingTop: '12%',
     paddingLeft: '5%'
   },
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   content: {
     borderWidth: 1,
-    borderColor: '#ffd36999',
+    borderColor: '#ffffffbf',
     borderRadius: 14,
     height: 195,
     width: '95%'
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    height: '55%',
+    height: '65%',
     borderRadius: 14,
     zIndex: 1,
     backgroundColor: 'transparent'
