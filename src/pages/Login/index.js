@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { useNavigation } from "@react-navigation/native"
-import { View, TextInput, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
+import { View, TextInput, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from 'react-native'
 import { api } from '../../utils/api'
 import { AuthContext } from '../../utils'
 
@@ -9,8 +9,11 @@ export function Login() {
   const { setUserId } = useContext(AuthContext)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleLogin = async () => {
+    setLoading(true)
+
     try {
       const response = await api.get('/users')
       const users = response.data
@@ -25,6 +28,8 @@ export function Login() {
     } catch (error) {
       console.error('Algo deu errado, ' + error)
       alert('Disculpe, parece que algo deu errado, tente novamente mais tarde.')
+    } finally {
+      setLoading(false) //desativando activeIndicator
     }
   }
 
@@ -55,8 +60,13 @@ export function Login() {
       <TouchableOpacity
         style={styles.buttonLogin}
         onPress={handleLogin}
+        disabled={loading}
       >
-        <Text style={styles.textButton}>Entrar</Text>
+        {loading ? (
+          <ActivityIndicator size="small" color="#000" />
+        ) : (
+          <Text style={styles.textButton}>Entrar</Text>
+        )}
       </TouchableOpacity>
 
       <View style={styles.containerRegister}>

@@ -1,18 +1,41 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  Easing,
+} from 'react-native-reanimated'
 import newsImage from '../../../assets/news-image.jpg'
 import worldImage from '../../../assets/world-image.jpg'
 import discussion from '../../../assets/discussion.jpg'
 import Learn from '../../../assets/learn.jpg'
 import mercadoImage from '../../../assets/mercadocripto.jpg'
 
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useIsFocused } from "@react-navigation/native"
 import { LinearGradient } from 'expo-linear-gradient'
 import { AuthContext } from '../../utils'
 
 export function World() {
-  const { userId } = useContext(AuthContext);
+  const { userId } = useContext(AuthContext)
   const navigation = useNavigation()
+  const isFocused = useIsFocused()
+  const fadeInValue = useSharedValue(0)
+
+  useEffect(() => {
+    if (isFocused) {
+      fadeInValue.value = withTiming(1, {
+        duration: 900,
+        easing: Easing.ease,
+      })
+    }
+  }, [isFocused])
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: fadeInValue.value,
+    }
+  })
 
   function handleNavigate(screen) {
     if (screen === 'DiscussionTab' && userId === null) {
@@ -30,55 +53,65 @@ export function World() {
       <View style={styles.cards}>
         <Text style={{ color: '#fff', fontSize: 22, fontWeight: 'bold' }}>Navegue pelo app</Text>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('WorldTab')}>
-          <Image source={mercadoImage} style={styles.images} />
-          <Text style={styles.text}>Mercado Cripto</Text>
-          <Text style={styles.description}>Acompanhe a cotação e o status das criptomoedas</Text>
-          <LinearGradient
-            style={styles.gradient}
-            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
-          />
-        </TouchableOpacity>
+        <Animated.View style={animatedStyle}>
+          <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('WorldTab')}>
+            <Image source={mercadoImage} style={styles.images} />
+            <Text style={styles.text}>Mercado Cripto</Text>
+            <Text style={styles.description}>Acompanhe a cotação e o status das criptomoedas</Text>
+            <LinearGradient
+              style={styles.gradient}
+              colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+            />
+          </TouchableOpacity>
+        </Animated.View>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('NewsTab')}>
-          <Image source={newsImage} style={styles.images} />
-          <Text style={styles.text}>Últimas notícias</Text>
-          <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
-          <LinearGradient
-            style={styles.gradient}
-            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
-          />
-        </TouchableOpacity>
+        <Animated.View style={animatedStyle}>
+          <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('NewsTab')}>
+            <Image source={newsImage} style={styles.images} />
+            <Text style={styles.text}>Últimas notícias</Text>
+            <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
+            <LinearGradient
+              style={styles.gradient}
+              colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+            />
+          </TouchableOpacity>
+        </Animated.View>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
-          <Image source={discussion} style={styles.images} />
-          <Text style={styles.text}>Forum de Discussões</Text>
-          <Text style={styles.description}>Faça login e contribua com o chat da comunidade</Text>
-          <LinearGradient
-            style={styles.gradient}
-            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
-          />
-        </TouchableOpacity>
+        <Animated.View style={animatedStyle}>
+          <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
+            <Image source={discussion} style={styles.images} />
+            <Text style={styles.text}>Forum de Discussões</Text>
+            <Text style={styles.description}>Faça login e contribua com o chat da comunidade</Text>
+            <LinearGradient
+              style={styles.gradient}
+              colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+            />
+          </TouchableOpacity>
+        </Animated.View>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Learn')}>
-          <Image source={Learn} style={styles.images} />
-          <Text style={styles.text}>Aprenda mais sobre Blockchain e Bitcoin</Text>
-          <Text style={styles.description}>Como essas tecnologias revolucionárias está mudando o mundo!</Text>
-          <LinearGradient
-            style={styles.gradient}
-            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
-          />
-        </TouchableOpacity>
+        <Animated.View style={animatedStyle}>
+          <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Learn')}>
+            <Image source={Learn} style={styles.images} />
+            <Text style={styles.text}>Aprenda mais sobre Blockchain e Bitcoin</Text>
+            <Text style={styles.description}>Como essas tecnologias revolucionárias está mudando o mundo!</Text>
+            <LinearGradient
+              style={styles.gradient}
+              colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+            />
+          </TouchableOpacity>
+        </Animated.View>
 
-        <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Popular')}>
-          <Image source={worldImage} style={styles.images} />
-          <Text style={{ ...styles.text, bottom: 45 }}>Criptos populares</Text>
-          <Text style={{ ...styles.description, bottom: 22 }}>7 criptos mais pesquisadas na CoinGecko</Text>
-          <LinearGradient
-            style={styles.gradient}
-            colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
-          />
-        </TouchableOpacity>
+        <Animated.View style={animatedStyle}>
+          <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('Popular')}>
+            <Image source={worldImage} style={styles.images} />
+            <Text style={{ ...styles.text, bottom: 45 }}>Criptos populares</Text>
+            <Text style={{ ...styles.description, bottom: 22 }}>7 criptos mais pesquisadas na CoinGecko</Text>
+            <LinearGradient
+              style={styles.gradient}
+              colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
+            />
+          </TouchableOpacity>
+        </Animated.View>
       </View>
     </ScrollView>
   )
@@ -90,6 +123,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#25334C',
     paddingTop: '12%',
     paddingLeft: '5%'
+  },
+  box: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'red',
   },
   title: {
     color: '#FFD369',

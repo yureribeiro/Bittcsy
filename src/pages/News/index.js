@@ -27,31 +27,37 @@ export function News() {
     getNews()
   }, [])
 
-  async function translateText(text) {
-    try {
-      const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
-        method: 'POST'
-      })
-      const json = await response.json()
-      return json.data.translations[0].translatedText
-    } catch (error) {
-      console.error(error)
-      throw new Error('Ocorreu um erro ao traduzir o texto. Por favor, tente novamente.')
-    }
-  }
+  // async function translateText(text) {
+  //   try {
+  //     const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
+  //       method: 'POST'
+  //     })
+  //     const json = await response.json()
 
-  async function handleTranslate(item) {
-    try {
-      const translatedTitle = await translateText(item.title)
-      setTranslatedNews([...translatedNews, { ...item, title: translatedTitle }])
-    } catch (error) {
-      console.error(error.message)
-      setTranslationError((prevErrors) => ({
-        ...prevErrors,
-        [item.id]: error.message,
-      }))
-    }
-  }
+  //     if (json.translations && json.translations.length > 0) {
+  //       return (`${json.translations[0].translatedText}\n  - Traduzido por Yandex.Translate `)
+
+  //     } else {
+  //       throw new Error('Ocorreu um erro ao traduzir o texto. Por favor, tente novamente.')
+  //     }
+  //   } catch (error) {
+  //     console.error(error)
+  //     throw new Error('Ocorreu um erro ao traduzir o texto. Por favor, tente novamente.')
+  //   }
+  // }
+
+  // async function handleTranslate(item) {
+  //   try {
+  //     const translatedTitle = await translateText(item.title)
+  //     setTranslatedNews([...translatedNews, { ...item, title: translatedTitle }])
+  //   } catch (error) {
+  //     console.error(error.message)
+  //     setTranslationError((prevErrors) => ({
+  //       ...prevErrors,
+  //       [item.id]: error.message,
+  //     }))
+  //   }
+  // }
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
@@ -92,10 +98,10 @@ export function News() {
               )}
               <View style={styles.detailsNews}>
                 <Text style={styles.domain}>{item.domain}</Text>
-                <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
-                  <Text style={styles.translateText}>traduzir notícia</Text>
+                {/* <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
+                  <Text style={styles.translateText}>Traduzir</Text>
                   <Text style={styles.translateText}>{index + 1}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
           )
