@@ -20,7 +20,7 @@ export function Splash({ onComplete }) {
     <Video
       style={StyleSheet.absoluteFill}
       resizeMode={ResizeMode.COVER}
-      source={require('../../../assets/icons/videosplash.mp4')}
+      source={require('../../../assets/icons/splashscreenvideo.mp4')}
       isLooping={false}
       onPlaybackStatusUpdate={onPlaybackStatusUpdate}
       shouldPlay={true}

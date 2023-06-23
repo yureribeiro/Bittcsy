@@ -4,7 +4,7 @@
     "slug": "Bittcsy",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icons/cubocomfundo.png",
+    "icon": "./assets/icons/cubocomfundo.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/icons/scrennsplash.png",

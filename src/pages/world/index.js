@@ -25,8 +25,8 @@ export function World() {
   useEffect(() => {
     if (isFocused) {
       fadeInValue.value = withTiming(1, {
-        duration: 900,
-        easing: Easing.ease,
+        duration: 800,
+        easing: Easing.linear,
       })
     }
   }, [isFocused])
@@ -47,12 +47,14 @@ export function World() {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.title}>Fique por dentro do</Text>
-      <Text style={styles.title}>mundo cripto!</Text>
+      <Animated.View style={animatedStyle}>
+        <Text style={styles.title}>Acompanhe o Mundo Cripto!</Text>
+      </Animated.View>
 
       <View style={styles.cards}>
-        <Text style={{ color: '#fff', fontSize: 22, fontWeight: 'bold' }}>Navegue pelo app</Text>
-
+        <Animated.View style={animatedStyle}>
+          <Text style={{ color: '#fff', fontSize: 22, fontWeight: 'bold' }}>Navegue pelo app</Text>
+        </Animated.View>
         <Animated.View style={animatedStyle}>
           <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('WorldTab')}>
             <Image source={mercadoImage} style={styles.images} />
@@ -124,11 +126,6 @@ const styles = StyleSheet.create({
     paddingTop: '12%',
     paddingLeft: '5%'
   },
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'red',
-  },
   title: {
     color: '#FFD369',
     fontSize: 26,
@@ -144,7 +141,8 @@ const styles = StyleSheet.create({
     borderColor: '#ffffffbf',
     borderRadius: 14,
     height: 195,
-    width: '95%'
+    width: '95%',
+    overflow: 'hidden',
   },
   images: {
     width: '100%',
