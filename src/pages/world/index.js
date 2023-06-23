@@ -87,7 +87,7 @@ export function World() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#25334c',
+    backgroundColor: '#25334C',
     paddingTop: '12%',
     paddingLeft: '5%'
   },
