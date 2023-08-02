@@ -8,7 +8,6 @@ import Animated, {
 } from 'react-native-reanimated'
 import newsImage from '../../../assets/news-image.jpg'
 import worldImage from '../../../assets/world-image.jpg'
-import discussion from '../../../assets/discussion.jpg'
 import Learn from '../../../assets/learn.jpg'
 import mercadoImage from '../../../assets/mercadocripto.jpg'
 
@@ -72,18 +71,6 @@ export function World() {
             <Image source={newsImage} style={styles.images} />
             <Text style={styles.text}>Últimas notícias</Text>
             <Text style={styles.description}>Se mantenha atualizado com notícias do mercado cripto</Text>
-            <LinearGradient
-              style={styles.gradient}
-              colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}
-            />
-          </TouchableOpacity>
-        </Animated.View>
-
-        <Animated.View style={animatedStyle}>
-          <TouchableOpacity style={styles.content} activeOpacity={0.7} onPress={() => handleNavigate('DiscussionTab')}>
-            <Image source={discussion} style={styles.images} />
-            <Text style={styles.text}>Forum de Discussões</Text>
-            <Text style={styles.description}>Faça login e contribua com o chat da comunidade</Text>
             <LinearGradient
               style={styles.gradient}
               colors={['transparent', 'rgba(0, 0, 0, 0.70)', 'rgba(0, 0, 0, 0.95)']}

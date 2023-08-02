@@ -2,9 +2,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Home } from '../pages/home'
 import { Details } from '../pages/details'
 import { Popular } from '../pages/popular'
-import { Register } from '../pages/Register'
-import { Login } from '../pages/Login'
-import { Discussion } from '../pages/discussion'
 import { News } from '../pages/News'
 import { Learn } from '../pages/learn'
 
@@ -38,28 +35,6 @@ export function StackRoutes() {
         component={Popular}
         options={{
           title: 'Criptos mais pesquisadas'
-        }}
-      />
-
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{
-          title: 'Acesse sua conta Bittcsy'
-        }}
-      />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{
-          title: 'Crie sua conta na Bittscy'
-        }}
-      />
-      <Stack.Screen
-        name='DiscussionTab'
-        component={Discussion}
-        options={{
-          headerShown: false,
         }}
       />
       <Stack.Screen

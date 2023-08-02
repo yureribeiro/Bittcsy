@@ -1,9 +1,38 @@
+import { useState } from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-
+import useWebSocket from 'react-use-websocket'
+import { LineChart } from 'react-native-chart-kit'
+import { ActivityIndicator } from 'react-native'
 export function Details() {
   const route = useRoute()
   const { coin } = route.params
+  const [historicalPrice, setHistoricalPrice] = useState([0]);
+
+  const updateHistoricalData = (newData) => {
+    if (!isNaN(newData)) {
+      setHistoricalPrice((prevData) => [...prevData.slice(-20), newData]);
+    }
+  };
+
+  // Move o hook useWebSocket para fora do componente
+  const { lastJsonMessage } = useWebSocket('wss://stream.binance.com:9443/ws/btcusdt@kline_5m', {
+    onOpen: () => console.log('WebSocket opened'),
+    onError: (event) => console.log(` error event: ${event}`),
+    shouldReconnect: (closeEvent) => console.log(` close event: ${closeEvent}`),
+    reconnectInterval: 60000,
+    onMessage: (event) => {
+      if (lastJsonMessage) {
+        const price = parseFloat(lastJsonMessage.k.o); // Utiliza o preço de abertura como valor Y
+        console.log(price);
+        updateHistoricalData(Number(price));
+      }
+    },
+    onReconnectStop: () => {
+      console.log('Reconnect stopped');
+    }
+  });
+
 
   return (
     <View contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
@@ -17,6 +46,41 @@ export function Details() {
           <Text style={styles.name}>({coin.symbol.toUpperCase()})</Text>
         </View>
       </View>
+      {
+        // verificar se historicalPrice esta vazio
+        !historicalPrice.length ? (
+          <ActivityIndicator
+            style={styles.loading} size="large" color="#fff" marginBottom={25}
+          />
+        ) : (
+          <LineChart
+            data={{
+              labels: historicalPrice.map((data) => ''),
+              datasets: [{ data: historicalPrice, strokeWidth: 1 }],
+            }}
+            width={350}
+            height={220}
+            chartConfig={{
+              backgroundColor: '#222831',
+              backgroundGradientFrom: '#EEEEEE',
+              backgroundGradientTo: '#FFD369',
+              decimalPlaces: 0, // Define a quantidade de casas decimais a serem exibidas no eixo Y
+              style: {
+                borderRadius: 16,
+              },
+              color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16,
+            }}
+          />
+        )
+      }
+
+
 
       <View style={styles.list}>
         <Text style={styles.text}>Rank: {coin.market_cap_rank}</Text>
