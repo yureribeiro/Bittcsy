@@ -1,13 +1,20 @@
-import { useState } from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { useState, useEffect } from 'react'
+import { View, ScrollView, Text, StyleSheet, Image } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import useWebSocket from 'react-use-websocket'
 import { LineChart } from 'react-native-chart-kit'
 import { ActivityIndicator } from 'react-native'
+
 export function Details() {
   const route = useRoute()
   const { coin } = route.params
   const [historicalPrice, setHistoricalPrice] = useState([0]);
+  const [websocketUrl, setWebsocketUrl] = useState(`wss://stream.binance.com:9443/ws/${coin.symbol.toLowerCase()}usdt@kline_5m`)
+  const [websocketLoading, setWebsocketLoading] = useState(true)
+
+  useEffect(() => {
+    setWebsocketUrl(`wss://stream.binance.com:9443/ws/${coin.symbol.toLowerCase()}usdt@kline_5m`)
+  }, [coin.symbol])
 
   const updateHistoricalData = (newData) => {
     if (!isNaN(newData)) {
@@ -16,8 +23,11 @@ export function Details() {
   };
 
   // Move o hook useWebSocket para fora do componente
-  const { lastJsonMessage } = useWebSocket('wss://stream.binance.com:9443/ws/btcusdt@kline_5m', {
-    onOpen: () => console.log('WebSocket opened'),
+  const { readyState, lastJsonMessage } = useWebSocket(websocketUrl, {
+    onOpen: () => {
+      console.log('WebSocket opened')
+      setWebsocketLoading(false)
+    },
     onError: (event) => console.log(` error event: ${event}`),
     shouldReconnect: (closeEvent) => console.log(` close event: ${closeEvent}`),
     reconnectInterval: 60000,
@@ -33,9 +43,8 @@ export function Details() {
     }
   });
 
-
   return (
-    <View contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
+    <ScrollView contentContainerStyle={{ paddingBottom: '27%' }} style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.coin}>
         <Image
           style={styles.image}
@@ -48,7 +57,7 @@ export function Details() {
       </View>
       {
         // verificar se historicalPrice esta vazio
-        !historicalPrice.length ? (
+        websocketLoading || readyState !== 1 ? (
           <ActivityIndicator
             style={styles.loading} size="large" color="#fff" marginBottom={25}
           />
@@ -113,7 +122,7 @@ export function Details() {
           Low 24H: {coin.low_24h.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
         </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

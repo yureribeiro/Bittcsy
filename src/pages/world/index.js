@@ -13,10 +13,8 @@ import mercadoImage from '../../../assets/mercadocripto.jpg'
 
 import { useNavigation, useIsFocused } from "@react-navigation/native"
 import { LinearGradient } from 'expo-linear-gradient'
-import { AuthContext } from '../../utils'
 
 export function World() {
-  const { userId } = useContext(AuthContext)
   const navigation = useNavigation()
   const isFocused = useIsFocused()
   const fadeInValue = useSharedValue(0)
@@ -37,10 +35,6 @@ export function World() {
   })
 
   function handleNavigate(screen) {
-    if (screen === 'DiscussionTab' && userId === null) {
-      navigation.navigate('Login')
-      return
-    }
     navigation.navigate({ name: screen })
   }
 

@@ -1,14 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator, RefreshControl } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, ActivityIndicator, RefreshControl } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import axios from 'axios'
-import ErrorTranslate from '../../components/tranlateError'
 
 export function News() {
   const [news, setNews] = useState([])
   const [refreshing, setRefreshing] = useState(false)
-  const [translatedNews, setTranslatedNews] = useState([])
-  const [translationError, setTranslationError] = useState({})
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -26,38 +23,6 @@ export function News() {
     }
     getNews()
   }, [])
-
-  // async function translateText(text) {
-  //   try {
-  //     const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=AIzaSyDH1LKLHA3DBxHlQMC1yGNfpcEGCYmQ7k4&q=${text}&target=pt-br`, {
-  //       method: 'POST'
-  //     })
-  //     const json = await response.json()
-
-  //     if (json.translations && json.translations.length > 0) {
-  //       return (`${json.translations[0].translatedText}\n  - Traduzido por Yandex.Translate `)
-
-  //     } else {
-  //       throw new Error('Ocorreu um erro ao traduzir o texto. Por favor, tente novamente.')
-  //     }
-  //   } catch (error) {
-  //     console.error(error)
-  //     throw new Error('Ocorreu um erro ao traduzir o texto. Por favor, tente novamente.')
-  //   }
-  // }
-
-  // async function handleTranslate(item) {
-  //   try {
-  //     const translatedTitle = await translateText(item.title)
-  //     setTranslatedNews([...translatedNews, { ...item, title: translatedTitle }])
-  //   } catch (error) {
-  //     console.error(error.message)
-  //     setTranslationError((prevErrors) => ({
-  //       ...prevErrors,
-  //       [item.id]: error.message,
-  //     }))
-  //   }
-  // }
 
   const onRefresh = useCallback(() => {
     setRefreshing(true)
@@ -87,21 +52,12 @@ export function News() {
       {loading ? (
         <ActivityIndicator size="large" color="#fff" marginTop={25} />
       ) : (
-        news.map((item, index) => {
-          const translatedItem = translatedNews.find((i) => i.id === item.id)
-          const error = translationError[item.id]
+        news.map((item) => {
           return (
             <View key={item.id} style={styles.cardNews}>
-              <Text style={styles.titleCard}>{translatedItem ? translatedItem.title : item.title}</Text>
-              {error && (
-                <ErrorTranslate error={error} onClose={() => setTranslationError(prevErrors => ({ ...prevErrors, [item.id]: null }))} />
-              )}
+              <Text style={styles.titleCard}>{item.title}</Text>
               <View style={styles.detailsNews}>
                 <Text style={styles.domain}>{item.domain}</Text>
-                {/* <TouchableOpacity style={styles.buttonTranslated} onPress={() => handleTranslate(item)}>
-                  <Text style={styles.translateText}>Traduzir</Text>
-                  <Text style={styles.translateText}>{index + 1}</Text>
-                </TouchableOpacity> */}
               </View>
             </View>
           )
@@ -114,9 +70,6 @@ export function News() {
         </Text>
         <Text style={styles.textCredits}>
           Notícias completas em breve com Bittcsy PRO.
-        </Text>
-        <Text style={styles.textCredits}>
-          Em caso de muitos acessos, aguarde um momento e atualize a página.
         </Text>
       </View>
     </ScrollView >

@@ -3,17 +3,19 @@ import { useNavigation } from '@react-navigation/native'
 import { View, Text, StyleSheet, TextInput, FlatList, ActivityIndicator } from 'react-native'
 import { Coin } from '../../components/coins'
 import axios from 'axios'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export function Home() {
   const navigation = useNavigation()
   const [coins, setCoins] = useState([])
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(false)
+  const [currency, setCurrency] = useState('usd')
 
   useEffect(() => {
     async function getCoins() {
       setLoading(true)
-      await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=70&page=1&sparkline=false')
+      await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=70&page=1&sparkline=false`)
         .then(res => {
           setCoins(res.data)
           setLoading(false)
@@ -22,9 +24,9 @@ export function Home() {
       setLoading(false)
     }
     getCoins()
-  }, [])
+  }, [currency])
 
-  const handleChange = (text) => {
+  const handleChangeSearch = (text) => {
     setSearch(text)
   }
 
@@ -32,20 +34,36 @@ export function Home() {
     navigation.navigate('Details', { coin })
   }
 
+  const handleChangeUSD = () => {
+    setCurrency('usd')
+  }
+
+  const handleChangeBRL = () => {
+    setCurrency('brl')
+  }
+
+
   return (
     <View style={styles.container}>
+      <View style={styles.containerTitle}>
+        <Text style={styles.text}>Acompanhe o Mercado</Text>
+      </View>
       <View style={styles.filter}>
         <TextInput
           style={styles.input}
           placeholder='Procure por uma cripto...'
           placeholderTextColor="#EEEEEE"
-          onChangeText={handleChange}
+          onChangeText={handleChangeSearch}
           value={search}
         />
-      </View>
-      <View style={styles.containerTitle}>
-        <Text style={styles.text}>Acompanhe o Mercado</Text>
-        <Text style={{ color: '#fff', paddingTop: 10, fontSize: 18 }}>Selecione para mais detalhes</Text>
+        <View style={styles.contentButtons}>
+          <TouchableOpacity style={styles.buttonUSD} onPress={handleChangeUSD}>
+            <Text style={styles.textButton}>USD</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonBRL} onPress={handleChangeBRL}>
+            <Text style={styles.textButton}>BRL</Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {loading ? (
@@ -85,8 +103,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   filter: {
-    marginBottom: 5,
-    paddingTop: 20
+    marginBottom: 17,
   },
   input: {
     width: '100%',
@@ -96,11 +113,37 @@ const styles = StyleSheet.create({
     backgroundColor: '#222831',
     borderRadius: 8,
     borderWidth: .5,
-    borderColor: 'rgba(204, 204, 204, 0.4)'
+    borderColor: 'rgba(204, 204, 204, 0.4)',
+    marginBottom: 8
   },
   containerTitle: {
-    padding: 10,
-    marginBottom: 14
+    marginBottom: 10,
+  },
+  contentButtons: {
+    marginTop: 8,
+    flexDirection: 'row',
+    gap: 12,
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  },
+  buttonUSD: {
+    fontSize: 18,
+    padding: 12,
+    backgroundColor: '#222831',
+    borderRadius: 8,
+    borderWidth: .8,
+    borderColor: '#5800FF'
+  },
+  buttonBRL: {
+    fontSize: 18,
+    padding: 12,
+    backgroundColor: '#222831',
+    borderRadius: 8,
+    borderWidth: .8,
+    borderColor: '#3EC70B'
+  },
+  textButton: {
+    color: '#fff'
   },
 
   emptyContainer: {
