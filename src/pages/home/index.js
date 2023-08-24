@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, TextInput, FlatList, ActivityIndicator } from '
 import { Coin } from '../../components/coins'
 import axios from 'axios'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export function Home() {
   const navigation = useNavigation()
@@ -44,7 +45,7 @@ export function Home() {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.containerTitle}>
         <Text style={styles.text}>Acompanhe o Mercado</Text>
       </View>
@@ -83,7 +84,7 @@ export function Home() {
           )}
         />
       )}
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#202138',
-    paddingTop: '10%',
+    paddingTop: '15%',
     paddingStart: 14,
     paddingEnd: 14,
     paddingBottom: 100

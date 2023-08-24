@@ -18,29 +18,23 @@ export function Details() {
 
   const updateHistoricalData = (newData) => {
     if (!isNaN(newData)) {
-      setHistoricalPrice((prevData) => [...prevData.slice(-20), newData]);
+      setHistoricalPrice((prevData) => [...prevData.slice(-10), newData]);
     }
   };
 
-  // Move o hook useWebSocket para fora do componente
   const { readyState, lastJsonMessage } = useWebSocket(websocketUrl, {
     onOpen: () => {
-      console.log('WebSocket opened')
       setWebsocketLoading(false)
     },
     onError: (event) => console.log(` error event: ${event}`),
     shouldReconnect: (closeEvent) => console.log(` close event: ${closeEvent}`),
-    reconnectInterval: 60000,
+    reconnectInterval: 2000,
     onMessage: (event) => {
       if (lastJsonMessage) {
-        const price = parseFloat(lastJsonMessage.k.o); // Utiliza o preço de abertura como valor Y
-        console.log(price);
-        updateHistoricalData(Number(price));
+        const price = parseFloat(lastJsonMessage.k.o);
+        updateHistoricalData(parseFloat(price));
       }
     },
-    onReconnectStop: () => {
-      console.log('Reconnect stopped');
-    }
   });
 
   return (
@@ -79,12 +73,16 @@ export function Details() {
               },
               color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
               labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              propsForDots: {
+                r: '0', // Remova os pontos no gráfico
+              },
             }}
             bezier
             style={{
               marginVertical: 8,
               borderRadius: 16,
             }}
+            withInnerLines={false} // Remove as linhas internas do gráfico
           />
         )
       }

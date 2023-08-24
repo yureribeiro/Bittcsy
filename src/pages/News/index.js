@@ -72,7 +72,7 @@ export function News() {
           Notícias completas em breve com Bittcsy PRO.
         </Text>
       </View>
-    </ScrollView >
+    </ScrollView>
   )
 }
 
